@@ -22,21 +22,30 @@ namespace MusicProgress {
         protected global::System.Web.UI.WebControls.Label TotalFilesNum;
         
         /// <summary>
-        /// Label1 control.
+        /// lFilenames control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lFilenames;
         
         /// <summary>
-        /// Label2 control.
+        /// lTotalChunks control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Label lTotalChunks;
+        
+        /// <summary>
+        /// lRawData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lRawData;
     }
 }

@@ -16,25 +16,25 @@ namespace MusicProgress.Backend
         public TimeSpan duration;
         public DateTime date;
 
-        /*public DataChunk()
+        public DataChunk()
         {
             totalTasks = 0;
             successful = 0;
             failed = 0;
             repeats = 0;
         }
-
+        /*
         public DataChunk(int _total, int _success, int _failed)
         {
             totalTasks = _total;
             successful = _success;
             failed = _failed;
-        }
+        }*/
 
         public DataChunk(DateTime _date)
         {
             date = _date;
-        }*/
+        }
 
         public abstract string TryMe();
         public abstract bool ReadData(string[] _stringArray);
@@ -43,10 +43,9 @@ namespace MusicProgress.Backend
 
     public class UpDownData : DataChunk
     {
-        public UpDownData()
-        { 
-        
-        }
+        public UpDownData() : base (){}
+        public UpDownData(DateTime _date) : base (_date) {}
+
         public override string TryMe()
         {
             return "UpD";
@@ -82,10 +81,9 @@ namespace MusicProgress.Backend
         public int third;
         public int clicks;
 
-        public SearchToneData()
-        { 
-        
-        }
+        public SearchToneData() : base() { }
+        public SearchToneData(DateTime _date) : base(_date) { }
+
         public override string TryMe()
         {
             return "Search";
@@ -128,10 +126,8 @@ namespace MusicProgress.Backend
         public int second;
         public int third;
 
-        public DefineToneData()
-        { 
-        
-        }
+        public DefineToneData() : base() { }
+        public DefineToneData(DateTime _date) : base(_date) { }
 
         public override string TryMe()
         {

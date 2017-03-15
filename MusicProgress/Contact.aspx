@@ -10,15 +10,17 @@
         <header>
             <h2>Total file number: <asp:Label ID="TotalFilesNum" runat="server"></asp:Label></h2>
 
-            <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+            <asp:Label ID="lFilenames" runat="server"></asp:Label>
             </header>
     </section>
 
     <section class="contact">
         <header>
-            <h3>Dates:</h3>
+            <h3>Data:&nbsp;
+                <asp:Label ID="lTotalChunks" runat="server"></asp:Label>
+            </h3>
             <p>
-                <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+                <asp:Label ID="lRawData" runat="server"></asp:Label>
             </p>
         </header>
     </section>

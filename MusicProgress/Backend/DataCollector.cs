@@ -45,25 +45,23 @@ namespace MusicProgress.Backend
 
         private void ReadOneFile(string path)
         {
-            //FileStream reader = new FileStream(path, FileMode.Open, FileAccess.Read);
             DataChunk tempData;
-            DateTime localdate = DateTime.Now;
+            DateTime localdate;
             TaskType task;
             string[] board = File.ReadAllLines(path);
-            if (board[0].StartsWith("Дата и время старта журнала"))
-                localdate = DateTime.Parse(board[0].Substring(28));
+            if (!board[0].StartsWith("Дата и время старта журнала"))
+                return;
+            if (!board[2].StartsWith("Тип задания:"))
+                return;
 
-            if (board[2].StartsWith("Тип задания:"))
-                task = typesAggr.GetTaskType(board[2]);
-            else
-                task = new TaskType("shit", "fail");
+            localdate = DateTime.Parse(board[0].Substring(28));
+            task = typesAggr.GetTaskType(board[2]);
 
             if (task.name == "error")
                 return;
-            tempData = factoryMap[task.name].FactoryMethod();
 
+            tempData = factoryMap[task.name].FactoryMethod_2(localdate);
             tempData.type = task;
-            tempData.date = localdate;
 
             int i = 3;
             int a = 0;

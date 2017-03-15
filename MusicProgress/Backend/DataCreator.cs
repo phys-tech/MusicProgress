@@ -9,6 +9,8 @@ namespace MusicProgress.Backend
     {
         // fabric method
         public abstract DataChunk FactoryMethod();
+        // fabric method with parameter
+        public abstract DataChunk FactoryMethod_2(DateTime _date);
     }
 
     public class UpDownCreator : DataCreator
@@ -16,6 +18,10 @@ namespace MusicProgress.Backend
         public override DataChunk FactoryMethod()
         {
             return new UpDownData();
+        }
+        public override DataChunk FactoryMethod_2(DateTime _date)
+        {
+            return new UpDownData(_date);
         }
     }
 
@@ -25,6 +31,10 @@ namespace MusicProgress.Backend
         {
             return new SearchToneData();
         }
+        public override DataChunk FactoryMethod_2(DateTime _date)
+        {
+            return new SearchToneData(_date);
+        }
     
     }
 
@@ -33,6 +43,10 @@ namespace MusicProgress.Backend
         public override DataChunk FactoryMethod()
         {
             return new DefineToneData();
+        }
+        public override DataChunk FactoryMethod_2(DateTime _date)
+        {
+            return new DefineToneData(_date);
         }
     
     }
