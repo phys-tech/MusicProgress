@@ -55,26 +55,32 @@ namespace MusicProgress.Backend
                 return;
 
             localdate = DateTime.Parse(board[0].Substring(28));
-            task = typesAggr.GetTaskType(board[2]);
 
-            if (task.name == "error")
-                return;
-
-            tempData = factoryMap[task.name].FactoryMethod_2(localdate);
-            tempData.type = task;
-
-            int i = 3;
-            int a = 0;
-            string[] tempStringArray = new string[15];
-            while (!board[i].StartsWith("————————————————"))
+            int lineNumber = 2;
+            while (!board[lineNumber].StartsWith("Дата и время остановки журнала"))
             {
-                tempStringArray[a] = board[i];
-                i++;
-                a++;
-            }
-            tempData.ReadData(tempStringArray);
+                task = typesAggr.GetTaskType(board[lineNumber]);
 
-            data.Add(tempData);
+                if (task.name == "error")
+                    return;
+
+                tempData = factoryMap[task.name].FactoryMethod_2(localdate);
+                tempData.type = task;
+
+                lineNumber++;
+                int a = 0;
+                string[] tempStringArray = new string[15];
+                while (!board[lineNumber].StartsWith("————————————————"))
+                {
+                    tempStringArray[a] = board[lineNumber];
+                    lineNumber++;
+                    a++;
+                }
+                if (tempData.ReadData(tempStringArray))
+                    data.Add(tempData);
+
+                lineNumber++;
+            }
         }
     }
 }

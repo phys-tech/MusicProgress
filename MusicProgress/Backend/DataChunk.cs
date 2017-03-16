@@ -36,7 +36,6 @@ namespace MusicProgress.Backend
             date = _date;
         }
 
-        public abstract string TryMe();
         public abstract bool ReadData(string[] _stringArray);
 
     }
@@ -46,10 +45,6 @@ namespace MusicProgress.Backend
         public UpDownData() : base (){}
         public UpDownData(DateTime _date) : base (_date) {}
 
-        public override string TryMe()
-        {
-            return "UpD";
-        }
 
         public override bool ReadData(string[] _stringArray)
         {
@@ -70,7 +65,8 @@ namespace MusicProgress.Backend
             successful = int.Parse(rawData[i + 1].Substring(rawData[i + 1].IndexOf("=") + 1));
             failed = int.Parse(rawData[i + 2].Substring(rawData[i + 2].IndexOf("=") + 1));
             repeats = int.Parse(rawData[i + 3].Substring(rawData[i + 3].IndexOf("=") + 1));
-            return true;
+
+            return totalTasks != 0;
         }
     }
 
@@ -84,10 +80,6 @@ namespace MusicProgress.Backend
         public SearchToneData() : base() { }
         public SearchToneData(DateTime _date) : base(_date) { }
 
-        public override string TryMe()
-        {
-            return "Search";
-        }
 
         public override bool ReadData(string[] _stringArray)
         {
@@ -115,7 +107,7 @@ namespace MusicProgress.Backend
             repeats = int.Parse(rawData[i + 3].Substring((rawData[i + 3].IndexOf("=") + 1)));
             clicks = int.Parse(rawData[i + 4].Substring((rawData[i + 4].IndexOf("=") + 1)));
 
-            return true;
+            return totalTasks != 0;
         }
 
     }
@@ -129,10 +121,6 @@ namespace MusicProgress.Backend
         public DefineToneData() : base() { }
         public DefineToneData(DateTime _date) : base(_date) { }
 
-        public override string TryMe()
-        {
-            return "Define";
-        }
 
         public override bool ReadData(string[] _stringArray)
         {
@@ -151,7 +139,7 @@ namespace MusicProgress.Backend
             failed = int.Parse(rawData[i + 2].Substring((rawData[i + 2].IndexOf("=") + 1)));
             repeats = int.Parse(rawData[i + 3].Substring((rawData[i + 3].IndexOf("=") + 1)));
 
-            return true;
+            return totalTasks != 0;
         }
 
     }
