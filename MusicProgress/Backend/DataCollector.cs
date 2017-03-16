@@ -62,7 +62,12 @@ namespace MusicProgress.Backend
                 task = typesAggr.GetTaskType(board[lineNumber]);
 
                 if (task.name == "error")
-                    return;
+                {
+                    while (!board[lineNumber].StartsWith("————————————————"))
+                        lineNumber++;
+                    lineNumber++;
+                    continue;
+                }
 
                 tempData = factoryMap[task.name].FactoryMethod_2(localdate);
                 tempData.type = task;
