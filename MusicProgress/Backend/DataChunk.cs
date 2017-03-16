@@ -65,7 +65,11 @@ namespace MusicProgress.Backend
             successful = int.Parse(rawData[i + 1].Substring(rawData[i + 1].IndexOf("=") + 1));
             failed = int.Parse(rawData[i + 2].Substring(rawData[i + 2].IndexOf("=") + 1));
             repeats = int.Parse(rawData[i + 3].Substring(rawData[i + 3].IndexOf("=") + 1));
-
+            
+            string time = rawData[i + 4].Substring(22);
+            string format = @"m\:ss";
+            duration = TimeSpan.ParseExact(time, format, null);
+            
             return totalTasks != 0;
         }
     }
@@ -107,6 +111,10 @@ namespace MusicProgress.Backend
             repeats = int.Parse(rawData[i + 3].Substring((rawData[i + 3].IndexOf("=") + 1)));
             clicks = int.Parse(rawData[i + 4].Substring((rawData[i + 4].IndexOf("=") + 1)));
 
+            string time = rawData[i + 5].Substring(22);
+            string format = @"m\:ss";
+            duration = TimeSpan.ParseExact(time, format, null);
+
             return totalTasks != 0;
         }
 
@@ -138,6 +146,10 @@ namespace MusicProgress.Backend
             //first = int.Parse(rawData[i + 1]);
             failed = int.Parse(rawData[i + 2].Substring((rawData[i + 2].IndexOf("=") + 1)));
             repeats = int.Parse(rawData[i + 3].Substring((rawData[i + 3].IndexOf("=") + 1)));
+
+            string time = rawData[i + 4].Substring(22);
+            string format = @"m\:ss";
+            duration = TimeSpan.ParseExact(time, format, null);
 
             return totalTasks != 0;
         }

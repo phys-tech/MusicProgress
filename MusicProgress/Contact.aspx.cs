@@ -29,7 +29,8 @@ namespace MusicProgress
                 string success = chunk.successful.ToString();
                 string fail = chunk.failed.ToString();
                 string repeats = chunk.repeats.ToString();
-                lRawData.Text += date + " - " + type +" - " + total + " (  " + success + " / " + fail + ") " + "[" + repeats + "] " + "<br>";
+                string time = chunk.duration.ToString();
+                lRawData.Text += date + " - " + type +" - " + total + " (  " + success + " / " + fail + ") " + "[" + repeats + "] " + "   t= " + time +"<br>";
             }
         }
     }
