@@ -16,12 +16,16 @@ namespace MusicProgress.Backend
         public TimeSpan duration;
         public DateTime date;
 
+        protected string durationFormat;
+
+
         public DataChunk()
         {
             totalTasks = 0;
             successful = 0;
             failed = 0;
             repeats = 0;
+            durationFormat = @"m\:ss";
         }
         /*
         public DataChunk(int _total, int _success, int _failed)
@@ -34,6 +38,7 @@ namespace MusicProgress.Backend
         public DataChunk(DateTime _date)
         {
             date = _date;
+            durationFormat = @"m\:ss";
         }
 
         public abstract bool ReadData(string[] _stringArray);
@@ -67,8 +72,7 @@ namespace MusicProgress.Backend
             repeats = int.Parse(rawData[i + 3].Substring(rawData[i + 3].IndexOf("=") + 1));
             
             string time = rawData[i + 4].Substring(22);
-            string format = @"m\:ss";
-            duration = TimeSpan.ParseExact(time, format, null);
+            duration = TimeSpan.ParseExact(time, durationFormat, null);
             
             return totalTasks != 0;
         }
@@ -112,8 +116,7 @@ namespace MusicProgress.Backend
             clicks = int.Parse(rawData[i + 4].Substring((rawData[i + 4].IndexOf("=") + 1)));
 
             string time = rawData[i + 5].Substring(22);
-            string format = @"m\:ss";
-            duration = TimeSpan.ParseExact(time, format, null);
+            duration = TimeSpan.ParseExact(time, durationFormat, null);
 
             return totalTasks != 0;
         }
@@ -148,8 +151,7 @@ namespace MusicProgress.Backend
             repeats = int.Parse(rawData[i + 3].Substring((rawData[i + 3].IndexOf("=") + 1)));
 
             string time = rawData[i + 4].Substring(22);
-            string format = @"m\:ss";
-            duration = TimeSpan.ParseExact(time, format, null);
+            duration = TimeSpan.ParseExact(time, durationFormat, null);
 
             return totalTasks != 0;
         }

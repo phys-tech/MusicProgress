@@ -15,11 +15,9 @@ namespace MusicProgress
         protected void Page_Load(object sender, EventArgs e)
         {
             dataCollector = new DataCollector();
-            lFilenames.Text = dataCollector.allfiles;
-            TotalFilesNum.Text = dataCollector.filesCounter.ToString();
+            var localData = dataCollector.data;
 
             lRawData.Text = "";
-            var localData = dataCollector.data;
             lTotalChunks.Text = "( " + localData.Count.ToString() + " пачек )";
             foreach (DataChunk chunk in localData)
             {
@@ -30,7 +28,7 @@ namespace MusicProgress
                 string fail = chunk.failed.ToString();
                 string repeats = chunk.repeats.ToString();
                 string time = chunk.duration.ToString();
-                lRawData.Text += date + " - " + type +" - " + total + " (  " + success + " / " + fail + ") " + "[" + repeats + "] " + "   t= " + time +"<br>";
+                lRawData.Text += date + " - " + type +" - " + total + " (  " + success + " / " + fail + " ) " + "[" + repeats + "] " + "\t\t t = " + time +"<br>";
             }
         }
     }

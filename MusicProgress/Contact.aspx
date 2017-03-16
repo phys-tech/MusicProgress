@@ -8,14 +8,6 @@
 
     <section class="contact">
         <header>
-            <h2>Total file number: <asp:Label ID="TotalFilesNum" runat="server"></asp:Label></h2>
-
-            <asp:Label ID="lFilenames" runat="server"></asp:Label>
-            </header>
-    </section>
-
-    <section class="contact">
-        <header>
             <h3>Data:&nbsp;
                 <asp:Label ID="lTotalChunks" runat="server"></asp:Label>
             </h3>

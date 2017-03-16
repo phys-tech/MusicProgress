@@ -13,24 +13,6 @@ namespace MusicProgress {
     public partial class Contact {
         
         /// <summary>
-        /// TotalFilesNum control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label TotalFilesNum;
-        
-        /// <summary>
-        /// lFilenames control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lFilenames;
-        
-        /// <summary>
         /// lTotalChunks control.
         /// </summary>
         /// <remarks>
