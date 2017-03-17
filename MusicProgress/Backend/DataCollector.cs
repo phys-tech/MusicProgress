@@ -10,31 +10,22 @@ namespace MusicProgress.Backend
     {
         private const string pathToFiles = "F:\\MyStuff\\Temp\\MusicResults\\";
         private const string extension = "*.txt";
-        //private TypesAggregator typesAggr;
 
         public string allfiles;
         public int filesCounter;
 
         public List<DataChunk> data;
 
-        //private Dictionary<string, DataCreator> factoryMap;
-        private Dictionary<newTask, DataCreator> factoryMap;
+        private Dictionary<Task, DataCreator> factoryMap;
 
         public DataCollector()
         {
-            //typesAggr = new TypesAggregator();
-            /*
-            factoryMap = new Dictionary<string, DataCreator>();
-            factoryMap.Add("Выше-ниже", new UpDownCreator());
-            factoryMap.Add("Поиск ноты", new SearchToneCreator());
-            factoryMap.Add("Определение ноты", new DefineToneCreator());
-             */
-            TestClass.Init();
+            TaskConverter.Init();
 
-            factoryMap = new Dictionary<newTask, DataCreator>();
-            factoryMap.Add(newTask.eUpDown, new UpDownCreator());
-            factoryMap.Add(newTask.eSearchTone, new SearchToneCreator());
-            factoryMap.Add(newTask.eDefineTone, new DefineToneCreator());
+            factoryMap = new Dictionary<Task, DataCreator>();
+            factoryMap.Add(Task.eUpDown, new UpDownCreator());
+            factoryMap.Add(Task.eSearchTone, new SearchToneCreator());
+            factoryMap.Add(Task.eDefineTone, new DefineToneCreator());
 
             LoadData();
         }
@@ -57,8 +48,7 @@ namespace MusicProgress.Backend
         {
             DataChunk tempData;
             DateTime localdate;
-            //TaskType task;
-            newTask task;
+            Task task;
             string[] board = File.ReadAllLines(path);
             if (!board[0].StartsWith("Дата и время старта журнала"))
                 return;
@@ -70,10 +60,9 @@ namespace MusicProgress.Backend
             int lineNumber = 2;
             while (!board[lineNumber].StartsWith("Дата и время остановки журнала"))
             {
-                //task = typesAggr.GetTaskType(board[lineNumber]);
-                task = TestClass.AsEnum(board[lineNumber]);
+                task = TaskConverter.AsEnum(board[lineNumber]);
 
-                if (task == newTask.eUnknown)
+                if (task == Task.eUnknown)
                 {
                     while (!board[lineNumber].StartsWith("————————————————"))
                         lineNumber++;
@@ -82,8 +71,6 @@ namespace MusicProgress.Backend
                 }
 
                 tempData = factoryMap[task].FactoryMethod_2(localdate);
-                //tempData.type = task;
-                tempData.task = task;
 
                 lineNumber++;
                 int a = 0;

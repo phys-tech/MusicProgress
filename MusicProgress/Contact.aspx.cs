@@ -22,8 +22,7 @@ namespace MusicProgress
             foreach (DataChunk chunk in localData)
             {
                 string date = chunk.date.ToLongDateString();
-                //string type = chunk.type.name;
-                string type = TestClass.AsString(chunk.task);
+                string type = TaskConverter.AsString(chunk.task);
                 string total = chunk.totalTasks.ToString();
                 string success = chunk.successful.ToString();
                 string fail = chunk.failed.ToString();

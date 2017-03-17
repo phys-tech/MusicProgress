@@ -8,8 +8,7 @@ namespace MusicProgress.Backend
 
     public abstract class DataChunk
     {
-        //public TaskType type;
-        public newTask task;
+        public Task task;
         public int totalTasks;
         public int successful;
         public int failed;
@@ -19,7 +18,6 @@ namespace MusicProgress.Backend
 
         protected string durationFormat;
 
-
         public DataChunk()
         {
             totalTasks = 0;
@@ -28,13 +26,6 @@ namespace MusicProgress.Backend
             repeats = 0;
             durationFormat = @"m\:ss";
         }
-        /*
-        public DataChunk(int _total, int _success, int _failed)
-        {
-            totalTasks = _total;
-            successful = _success;
-            failed = _failed;
-        }*/
 
         public DataChunk(DateTime _date)
         {
@@ -49,18 +40,20 @@ namespace MusicProgress.Backend
     public class UpDownData : DataChunk
     {
         public UpDownData() : base (){}
-        public UpDownData(DateTime _date) : base (_date) {}
+        public UpDownData(DateTime _date) : base (_date) 
+        {
+            task = Task.eUpDown;
+        }
 
 
         public override bool ReadData(string[] _stringArray)
         {
             /*
-             * Количество полученных заданий этого типа = 50
+                Количество полученных заданий этого типа = 50
                 Успешно выполнено = 46
                 Не выполнено заданий этого типа = 4
                 Использовано повторных прослушиваний = 0
                 Использовано времени 02:44
-             * 
             */
             string[] rawData = _stringArray;
             int i = 0;
@@ -87,19 +80,21 @@ namespace MusicProgress.Backend
         public int clicks;
 
         public SearchToneData() : base() { }
-        public SearchToneData(DateTime _date) : base(_date) { }
-
+        public SearchToneData(DateTime _date) : base(_date) 
+        {
+            task = Task.eSearchTone;
+        }
 
         public override bool ReadData(string[] _stringArray)
         {
             /*
-             Количество полученных / выполненных заданий этого типа = 50 / 50
-            Успешно выполнено с 1-й / 2-й / 3-й попытки = 49 / 1 / 0
-            Не выполнено заданий этого типа = 0
-            Использовано повторных прослушиваний = 0
-            Использовано нажатий на клавиши пианино = 72
-            Использовано времени 03:42* 
-             */ 
+                Количество полученных / выполненных заданий этого типа = 50 / 50
+                Успешно выполнено с 1-й / 2-й / 3-й попытки = 49 / 1 / 0
+                Не выполнено заданий этого типа = 0
+                Использовано повторных прослушиваний = 0
+                Использовано нажатий на клавиши пианино = 72
+                Использовано времени 03:42* 
+            */ 
             string[] rawData = _stringArray;
             int i = 0;
             while (!rawData[i].StartsWith("Количество полученных / выполненных заданий этого типа"))
@@ -131,8 +126,10 @@ namespace MusicProgress.Backend
         public int third;
 
         public DefineToneData() : base() { }
-        public DefineToneData(DateTime _date) : base(_date) { }
-
+        public DefineToneData(DateTime _date) : base(_date) 
+        {
+            task = Task.eDefineTone;
+        }
 
         public override bool ReadData(string[] _stringArray)
         {
