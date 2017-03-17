@@ -8,7 +8,8 @@ namespace MusicProgress.Backend
 
     public abstract class DataChunk
     {
-        public TaskType type;
+        //public TaskType type;
+        public newTask task;
         public int totalTasks;
         public int successful;
         public int failed;
