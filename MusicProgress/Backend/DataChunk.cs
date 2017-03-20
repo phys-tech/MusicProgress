@@ -114,13 +114,8 @@ namespace MusicProgress.Backend
             while (!rawData[i].StartsWith("Количество полученных / выполненных заданий этого типа"))
                 i++;
 
-
-            int start = rawData[i].IndexOf("=") + 1;
-            int end = rawData[i].LastIndexOf("/");
-            int length = end - start;
-            totalTasks = int.Parse(rawData[i].Substring(start, length));
-            successful = int.Parse(rawData[i].Substring(end + 1));
-            //first = int.Parse(rawData[i + 1]);
+            StringParser.TwoNumbers(rawData[i], out totalTasks, out successful);
+            StringParser.ThreeNumbers(rawData[i + 1], out first, out second, out third);
             failed = int.Parse(rawData[i + 2].Substring((rawData[i + 2].IndexOf("=") + 1)));
             repeats = int.Parse(rawData[i + 3].Substring((rawData[i + 3].IndexOf("=") + 1)));
             clicks = int.Parse(rawData[i + 4].Substring((rawData[i + 4].IndexOf("=") + 1)));
@@ -137,11 +132,15 @@ namespace MusicProgress.Backend
             string sType = TaskConverter.AsString(task);
             string sTotal = totalTasks.ToString();
             string sSuccess = successful.ToString();
+            string sFirst = first.ToString();
+            string sSecond = second.ToString();
+            string sThird = third.ToString();
             string sFail = failed.ToString();
             string sClicks = clicks.ToString();
             string sRepeats = repeats.ToString();
             string sTime = duration.ToString();
-            string output = sDate + " - " + sType + " - " + sTotal + " (  " + sSuccess + " / " + sFail + " ) * <b>"+ sClicks + "</b> [" + sRepeats + "] " + "\t\t t = " + sTime + "<br>";
+            string attempts = " <u>|" + sFirst + "|" + sSecond + "|" + sThird + "</u> ";
+            string output = sDate + " - " + sType + " - " + sTotal + " (  " + sSuccess + " / " + sFail + " ) " + attempts + "* <b>"+ sClicks + "</b> [" + sRepeats + "] " + "\t\t t = " + sTime + "<br>";
             return output;
         }
 
@@ -167,13 +166,8 @@ namespace MusicProgress.Backend
             while (!rawData[i].StartsWith("Количество полученных / выполненных заданий этого типа"))
                 i++;
 
-
-            int start = rawData[i].IndexOf("=") + 1;
-            int end = rawData[i].LastIndexOf("/");
-            int length = end - start;
-            totalTasks = int.Parse(rawData[i].Substring(start, length));
-            successful = int.Parse(rawData[i].Substring(end + 1));
-            //first = int.Parse(rawData[i + 1]);
+            StringParser.TwoNumbers(rawData[i], out totalTasks, out successful);
+            StringParser.ThreeNumbers(rawData[i + 1], out first, out second, out third);
             failed = int.Parse(rawData[i + 2].Substring((rawData[i + 2].IndexOf("=") + 1)));
             repeats = int.Parse(rawData[i + 3].Substring((rawData[i + 3].IndexOf("=") + 1)));
 
@@ -190,9 +184,13 @@ namespace MusicProgress.Backend
             string sTotal = totalTasks.ToString();
             string sSuccess = successful.ToString();
             string sFail = failed.ToString();
+            string sFirst = first.ToString();
+            string sSecond = second.ToString();
+            string sThird = third.ToString();
             string sRepeats = repeats.ToString();
             string sTime = duration.ToString();
-            string output = sDate + " - " + sType + " - " + sTotal + " (  " + sSuccess + " / " + sFail + " ) " + "[" + sRepeats + "] " + "\t\t t = " + sTime + "<br>";
+            string attempts = " <u>|" + sFirst + "|" + sSecond + "|" + sThird + "</u> ";
+            string output = sDate + " - " + sType + " - " + sTotal + " (  " + sSuccess + " / " + sFail + " ) " + attempts  + "[" + sRepeats + "] " + "\t\t t = " + sTime + "<br>";
             return output;
         }
 

@@ -282,6 +282,7 @@
     <Compile Include="Backend\DataChunk.cs" />
     <Compile Include="Backend\DataCollector.cs" />
     <Compile Include="Backend\DataCreator.cs" />
+    <Compile Include="Backend\StringParser.cs" />
     <Compile Include="Backend\TaskType.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
