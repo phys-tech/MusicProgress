@@ -21,14 +21,8 @@ namespace MusicProgress
             lTotalChunks.Text = "( " + localData.Count.ToString() + " пачек )";
             foreach (DataChunk chunk in localData)
             {
-                string date = chunk.date.ToLongDateString();
-                string type = TaskConverter.AsString(chunk.task);
-                string total = chunk.totalTasks.ToString();
-                string success = chunk.successful.ToString();
-                string fail = chunk.failed.ToString();
-                string repeats = chunk.repeats.ToString();
-                string time = chunk.duration.ToString();
-                lRawData.Text += date + " - " + type +" - " + total + " (  " + success + " / " + fail + " ) " + "[" + repeats + "] " + "\t\t t = " + time +"<br>";
+                string text = chunk.ShowData();
+                lRawData.Text += text;
             }
         }
     }

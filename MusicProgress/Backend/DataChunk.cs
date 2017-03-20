@@ -34,6 +34,7 @@ namespace MusicProgress.Backend
         }
 
         public abstract bool ReadData(string[] _stringArray);
+        public abstract string ShowData();
 
     }
 
@@ -69,6 +70,19 @@ namespace MusicProgress.Backend
             duration = TimeSpan.ParseExact(time, durationFormat, null);
             
             return totalTasks != 0;
+        }
+
+        public override string ShowData()
+        {
+            string sDate = date.ToLongDateString();
+            string sType = TaskConverter.AsString(task);
+            string sTotal = totalTasks.ToString();
+            string sSuccess = successful.ToString();
+            string sFail = failed.ToString();
+            string sRepeats = repeats.ToString();
+            string sTime = duration.ToString();
+            string output = sDate + " - " + sType + " - " + sTotal + " (  " + sSuccess + " / " + sFail + " ) " + "[" + sRepeats + "] " + "\t\t t = " + sTime + "<br>";
+            return output;
         }
     }
 
@@ -117,6 +131,21 @@ namespace MusicProgress.Backend
             return totalTasks != 0;
         }
 
+        public override string ShowData()
+        {
+            string sDate = date.ToLongDateString();
+            string sType = TaskConverter.AsString(task);
+            string sTotal = totalTasks.ToString();
+            string sSuccess = successful.ToString();
+            string sFail = failed.ToString();
+            string sClicks = clicks.ToString();
+            string sRepeats = repeats.ToString();
+            string sTime = duration.ToString();
+            string output = sDate + " - " + sType + " - " + sTotal + " (  " + sSuccess + " / " + sFail + " ) * <b>"+ sClicks + "</b> [" + sRepeats + "] " + "\t\t t = " + sTime + "<br>";
+            return output;
+        }
+
+
     }
 
     public class DefineToneData : DataChunk
@@ -152,6 +181,19 @@ namespace MusicProgress.Backend
             duration = TimeSpan.ParseExact(time, durationFormat, null);
 
             return totalTasks != 0;
+        }
+
+        public override string ShowData()
+        {
+            string sDate = date.ToLongDateString();
+            string sType = TaskConverter.AsString(task);
+            string sTotal = totalTasks.ToString();
+            string sSuccess = successful.ToString();
+            string sFail = failed.ToString();
+            string sRepeats = repeats.ToString();
+            string sTime = duration.ToString();
+            string output = sDate + " - " + sType + " - " + sTotal + " (  " + sSuccess + " / " + sFail + " ) " + "[" + sRepeats + "] " + "\t\t t = " + sTime + "<br>";
+            return output;
         }
 
     }
