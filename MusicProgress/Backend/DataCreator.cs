@@ -51,5 +51,18 @@ namespace MusicProgress.Backend
     
     }
 
+    public class UnknownCreator : DataCreator
+    {
+        public override DataChunk FactoryMethod()
+        {
+            return new UnknownData();
+        }
+
+        public override DataChunk FactoryMethod_2(DateTime _date)
+        {
+            return new UnknownData(_date);
+        }
+    }
+
 
 }

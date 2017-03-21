@@ -193,4 +193,32 @@ namespace MusicProgress.Backend
 
     }
 
+    public class UnknownData : DataChunk
+    {
+        public string Wtf;
+
+        public UnknownData() : base() { }
+        public UnknownData(DateTime _date) : base(_date)
+        {
+            task = Task.eUnknown;
+        }
+
+        public override bool ReadData(string[] _stringArray)
+        {
+            Wtf = "";
+            int num = _stringArray.Count();
+            for (int i = 0; i < num; i++)
+                Wtf += _stringArray[i];
+            return true;
+        }
+
+        public override string ShowData()
+        {
+            string sDate = date.ToLongDateString();
+            string sTask = TaskConverter.AsString(task);
+            string output = "<b>" + sDate + " - " + sTask + "</b><br>";
+            return output;
+        }
+    }
+
 }

@@ -26,6 +26,7 @@ namespace MusicProgress.Backend
             factoryMap.Add(Task.eUpDown, new UpDownCreator());
             factoryMap.Add(Task.eSearchTone, new SearchToneCreator());
             factoryMap.Add(Task.eDefineTone, new DefineToneCreator());
+            factoryMap.Add(Task.eUnknown, new UnknownCreator());
 
             LoadData();
         }
@@ -46,31 +47,20 @@ namespace MusicProgress.Backend
 
         private void ReadOneFile(string path)
         {
-            DataChunk tempData;
-            DateTime localdate;
-            Task task;
             string[] board = File.ReadAllLines(path);
             if (!board[0].StartsWith("Дата и время старта журнала"))
                 return;
             if (!board[2].StartsWith("Тип задания:"))
                 return;
 
-            localdate = DateTime.Parse(board[0].Substring(28));
+            DateTime localdate = DateTime.Parse(board[0].Substring(28));
 
             int lineNumber = 2;
             while (!board[lineNumber].StartsWith("Дата и время остановки журнала"))
             {
-                task = TaskConverter.AsEnum(board[lineNumber]);
+                Task task = TaskConverter.AsEnum(board[lineNumber]);
 
-                if (task == Task.eUnknown)
-                {
-                    while (!board[lineNumber].StartsWith("————————————————"))
-                        lineNumber++;
-                    lineNumber++;
-                    continue;
-                }
-
-                tempData = factoryMap[task].FactoryMethod_2(localdate);
+                DataChunk tempData = factoryMap[task].FactoryMethod_2(localdate);
 
                 lineNumber++;
                 int a = 0;
