@@ -17,6 +17,7 @@ namespace MusicProgress
             dataCollector = new DataCollector();
             var localData = dataCollector.data;
 
+            localData.Sort(CompareDataChunks);
             lRawData.Text = "";
             lTotalChunks.Text = "( " + localData.Count.ToString() + " пачек )";
             foreach (DataChunk chunk in localData)
@@ -24,6 +25,16 @@ namespace MusicProgress
                 string text = chunk.ShowData();
                 lRawData.Text += text;
             }
+        }
+
+        private int CompareDataChunks(DataChunk chunk1, DataChunk chunk2)
+        {
+            if (chunk1.date < chunk2.date)
+                return -1;
+            else if (chunk1.date > chunk2.date)
+                return 1;
+            else
+                return 0;
         }
     }
 }

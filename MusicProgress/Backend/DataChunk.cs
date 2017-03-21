@@ -64,8 +64,7 @@ namespace MusicProgress.Backend
             totalTasks = int.Parse(rawData[i].Substring(rawData[i].IndexOf("=") + 1));
             successful = int.Parse(rawData[i + 1].Substring(rawData[i + 1].IndexOf("=") + 1));
             failed = int.Parse(rawData[i + 2].Substring(rawData[i + 2].IndexOf("=") + 1));
-            repeats = int.Parse(rawData[i + 3].Substring(rawData[i + 3].IndexOf("=") + 1));
-            
+            repeats = int.Parse(rawData[i + 3].Substring(rawData[i + 3].IndexOf("=") + 1));            
             string time = rawData[i + 4].Substring(22);
             duration = TimeSpan.ParseExact(time, durationFormat, null);
             
@@ -119,7 +118,6 @@ namespace MusicProgress.Backend
             failed = int.Parse(rawData[i + 2].Substring((rawData[i + 2].IndexOf("=") + 1)));
             repeats = int.Parse(rawData[i + 3].Substring((rawData[i + 3].IndexOf("=") + 1)));
             clicks = int.Parse(rawData[i + 4].Substring((rawData[i + 4].IndexOf("=") + 1)));
-
             string time = rawData[i + 5].Substring(22);
             duration = TimeSpan.ParseExact(time, durationFormat, null);
 
@@ -170,7 +168,6 @@ namespace MusicProgress.Backend
             StringParser.ThreeNumbers(rawData[i + 1], out first, out second, out third);
             failed = int.Parse(rawData[i + 2].Substring((rawData[i + 2].IndexOf("=") + 1)));
             repeats = int.Parse(rawData[i + 3].Substring((rawData[i + 3].IndexOf("=") + 1)));
-
             string time = rawData[i + 4].Substring(22);
             duration = TimeSpan.ParseExact(time, durationFormat, null);
 
