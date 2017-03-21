@@ -216,8 +216,18 @@ namespace MusicProgress.Backend
         {
             string sDate = date.ToLongDateString();
             string sTask = TaskConverter.AsString(task);
-            string output = "<b>" + sDate + " - " + sTask + "</b><br>";
+            string output = "<b>" + sDate + " - " + sTask +  "</b><br>";
             return output;
+        }
+    }
+
+
+    public class Search37Tone : SearchToneData
+    {
+        public Search37Tone() : base() { }
+        public Search37Tone(DateTime _date) : base(_date)
+        {
+            task = Task.eSearch37;
         }
     }
 

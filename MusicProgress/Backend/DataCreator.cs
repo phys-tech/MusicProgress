@@ -35,7 +35,6 @@ namespace MusicProgress.Backend
         {
             return new SearchToneData(_date);
         }
-    
     }
 
     public class DefineToneCreator : DataCreator
@@ -62,6 +61,18 @@ namespace MusicProgress.Backend
         {
             return new UnknownData(_date);
         }
+    }
+
+    public class Search37Creator : SearchToneCreator
+    {
+        public override DataChunk FactoryMethod()
+        {
+            return new Search37Tone();
+        }
+        public override DataChunk FactoryMethod_2(DateTime _date)
+        {
+            return new Search37Tone(_date);
+        }    
     }
 
 
