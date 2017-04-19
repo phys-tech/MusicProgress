@@ -4,22 +4,13 @@
     Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <hgroup class="title">
-        <h1><%: Title %>.</h1>
-        <h2>Your app description page.</h2>
+        <h1><%: Title %></h1>        
     </hgroup>
-
     <article>
-        <p>        
-            Let me test you, bro - by Ilych.
-        </p>
-
-        <p>        
-            Use this area to provide additional information.
-        </p>
-
-        <p>        
-            Use this area to provide additional information.
-        </p>
+        <p><asp:Label ID="Label1" runat="server" Text="Label"></asp:Label></p>
+        <p><asp:Label ID="Label2" runat="server" Text="Label"></asp:Label></p>
+        <p><asp:Label ID="Label3" runat="server" Text="Label"></asp:Label></p>
+        <p><asp:Label ID="Label4" runat="server" Text="Label"></asp:Label></p>
     </article>
 
     <asp:Chart ID="MyChart" runat="server">

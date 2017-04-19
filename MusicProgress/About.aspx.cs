@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using MusicProgress.Backend;
 
 using System.Data;
 using System.Web.UI.DataVisualization.Charting;
@@ -14,6 +15,15 @@ namespace MusicProgress
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            DataCollector dataCollector = new DataCollector();
+            Aggregator aggregator = new Aggregator(dataCollector);
+
+            Label1.Text = "Success: " + aggregator.averageSuccess.ToString("F2");
+            Label2.Text = "Failed: " + aggregator.averageFailed.ToString("F2");
+            Label3.Text = "Repeats: " + aggregator.averageRepeats.ToString("F2");
+            Label4.Text = "Duration: " + aggregator.averageDuration.ToString("F2");
+
+
             DataTable dt = default(DataTable);
             dt = CreateDataTable();
 

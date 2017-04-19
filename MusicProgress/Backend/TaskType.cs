@@ -9,9 +9,10 @@ namespace MusicProgress.Backend
      * Тип задания: Поступление в ДМШ (проверка музыкального слуха) -> Уровень 3: Малые секунды и примы
      * Тип задания: Мелодии в пределах 13 клавиш -> Поиск прозвучавшего тона
      * Тип задания: Мелодии в пределах 13 клавиш -> Определение прозвучавшего тона
+     * Тип задания: Мелодии в пределах 37 клавиш -> Поиск прозвучавшего тона
      */
 
-public enum Task { eUpDown = 0, eSearchTone, eDefineTone, eSearch37, eUnknown};
+    public enum Task { eUpDown = 0, eSearchTone, eDefineTone, eSearch37, eUnknown};
 
 public static class TaskConverter
 {
