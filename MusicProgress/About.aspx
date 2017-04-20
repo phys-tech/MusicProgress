@@ -6,12 +6,9 @@
     <hgroup class="title">
         <h1><%: Title %></h1>        
     </hgroup>
-    <article>
-        <p><asp:Label ID="Label1" runat="server" Text="Label"></asp:Label></p>
-        <p><asp:Label ID="Label2" runat="server" Text="Label"></asp:Label></p>
-        <p><asp:Label ID="Label3" runat="server" Text="Label"></asp:Label></p>
-        <p><asp:Label ID="Label4" runat="server" Text="Label"></asp:Label></p>
-    </article>
+
+    <asp:Panel ID="Panel1" runat="server" Height="543px">
+    </asp:Panel>
 
     <asp:Chart ID="MyChart" runat="server">
         <Series>
