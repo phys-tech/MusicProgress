@@ -18,10 +18,12 @@ namespace MusicProgress
             DataCollector dataCollector = new DataCollector();
             Aggregator aggregator = new Aggregator(dataCollector);
 
-            Label1.Text = "Success: " + aggregator.averageSuccess.ToString("F2");
-            Label2.Text = "Failed: " + aggregator.averageFailed.ToString("F2");
-            Label3.Text = "Repeats: " + aggregator.averageRepeats.ToString("F2");
-            Label4.Text = "Duration: " + aggregator.averageDuration.ToString("F2");
+            Task task = Task.eDefineTone;
+
+            Label1.Text = "Success: " + aggregator.mapAverage[task].averageSuccess.ToString("F2");
+            Label2.Text = "Failed: " + aggregator.mapAverage[task].averageFailed.ToString("F2");
+            Label3.Text = "Repeats: " + aggregator.mapAverage[task].averageRepeats.ToString("F2");
+            Label4.Text = "Duration: " + aggregator.mapAverage[task].averageDuration.ToString("F2");
 
 
             DataTable dt = default(DataTable);
