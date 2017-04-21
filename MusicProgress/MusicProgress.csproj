@@ -280,6 +280,7 @@
       <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Backend\Aggregator.cs" />
+    <Compile Include="Backend\Average.cs" />
     <Compile Include="Backend\DataChunk.cs" />
     <Compile Include="Backend\DataCollector.cs" />
     <Compile Include="Backend\DataCreator.cs" />
