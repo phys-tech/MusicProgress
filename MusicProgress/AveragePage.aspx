@@ -1,4 +1,4 @@
-﻿<%@ Page Title="About" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="About.aspx.cs" Inherits="MusicProgress.About" %>
+﻿<%@ Page Title="Average!" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AveragePage.aspx.cs" Inherits="MusicProgress.AveragePage" %>
 
 <%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
     Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
@@ -37,8 +37,8 @@
         </p>
         <ul>
             <li><a runat="server" href="~/">Home</a></li>
-            <li><a runat="server" href="~/About.aspx">About</a></li>
-            <li><a runat="server" href="~/Contact.aspx">Contact</a></li>
+            <li><a runat="server" href="~/AveragePage.aspx">Average</a></li>
+            <li><a runat="server" href="DataPage.aspx">Data</a></li>
         </ul>
     </aside>
 </asp:Content>

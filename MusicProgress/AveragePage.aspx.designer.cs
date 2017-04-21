@@ -10,7 +10,7 @@
 namespace MusicProgress {
     
     
-    public partial class About {
+    public partial class AveragePage {
         
         /// <summary>
         /// Panel1 control.

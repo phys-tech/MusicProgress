@@ -10,7 +10,7 @@
 namespace MusicProgress {
     
     
-    public partial class Contact {
+    public partial class DataPage {
         
         /// <summary>
         /// lTotalChunks control.

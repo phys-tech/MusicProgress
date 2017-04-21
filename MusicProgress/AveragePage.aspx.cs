@@ -11,7 +11,7 @@ using System.Web.UI.DataVisualization.Charting;
 
 namespace MusicProgress
 {
-    public partial class About : Page
+    public partial class AveragePage : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

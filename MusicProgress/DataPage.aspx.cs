@@ -8,7 +8,7 @@ using MusicProgress.Backend;
 
 namespace MusicProgress
 {
-    public partial class Contact : Page
+    public partial class DataPage : Page
     {
         DataCollector dataCollector;
 
@@ -19,7 +19,7 @@ namespace MusicProgress
 
             localData.Sort(CompareDataChunks);
             lRawData.Text = "";
-            lTotalChunks.Text = "( " + localData.Count.ToString() + " пачек )";
+            lTotalChunks.Text = "Всего собрано:  " + localData.Count.ToString() + " пачек";
             foreach (DataChunk chunk in localData)
             {
                 string text = chunk.ShowData();
