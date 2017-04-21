@@ -14,13 +14,15 @@ namespace MusicProgress.Backend
         public TimeSpan duration;
         public int count;
 
-        public float averageSuccess;
-        public float averageFailed;
-        public float averageRepeats;
-        public float averageDuration;
+        private Task task;
+        private float averageSuccess;
+        private float averageFailed;
+        private float averageRepeats;        
+        private TimeSpan averageDuration;
 
-        public Average()
+        public Average(Task _task)
         {
+            task = _task;
             total = 0;
             success = 0;
             failed = 0;
@@ -33,7 +35,20 @@ namespace MusicProgress.Backend
             averageSuccess = (float)success * 100 / total;
             averageFailed = (float)failed * 100 / total;
             averageRepeats = (float)repeats * 100 / total;
-            averageDuration = (float)duration.TotalSeconds / count;
+            float averageSeconds = (float)duration.TotalSeconds / count;
+            averageDuration = new TimeSpan(0, 0, (int) averageSeconds);
+        }
+
+        public String ShowAsString()
+        {
+            String result;
+            result = "<b>" + TaskConverter.AsString(task) + "</b>";
+            result += "<br>Success: " + averageSuccess.ToString("F2") + " %";
+            result += "<br>Failed: " + averageFailed.ToString("F2") + " %";
+            result += "<br>Repeats: " + averageRepeats.ToString("F2") + " %";
+            result += "<br>Duration: " + averageDuration.ToString();
+            result += "<br>";
+            return result;
         }
     }
 
@@ -49,7 +64,7 @@ namespace MusicProgress.Backend
             dataCollector = collector;
             mapAverage = new Dictionary<Task, Average>();
             foreach (Task task in Enum.GetValues(typeof(Task)))
-                mapAverage.Add(task, new Average());
+                mapAverage.Add(task, new Average(task));
 
             CalcStats();
         }
@@ -73,7 +88,6 @@ namespace MusicProgress.Backend
 
             foreach (Average av in mapAverage.Values)
                 av.CalcAverage();
-
         }
     }
 }

@@ -21,13 +21,7 @@ namespace MusicProgress
             foreach (Task task in Enum.GetValues(typeof(Task)))
             {
                 Label lab = new Label();
-                lab.Text = "<b>"+TaskConverter.AsString(task)+"</b>";
-                lab.Text += "<br>Success: " + aggregator.mapAverage[task].averageSuccess.ToString("F2");
-                lab.Text += "<br>Failed: " + aggregator.mapAverage[task].averageFailed.ToString("F2");
-                lab.Text += "<br>Repeats: " + aggregator.mapAverage[task].averageRepeats.ToString("F2");
-                lab.Text += "<br>Duration: " + aggregator.mapAverage[task].averageDuration.ToString("F2");
-                lab.Text += "<br>";
-
+                lab.Text = aggregator.mapAverage[task].ShowAsString();
                 Panel1.Controls.AddAt((int)task, lab);
             }
 
