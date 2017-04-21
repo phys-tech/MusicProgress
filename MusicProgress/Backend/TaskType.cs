@@ -10,9 +10,10 @@ namespace MusicProgress.Backend
      * Тип задания: Мелодии в пределах 13 клавиш -> Поиск прозвучавшего тона
      * Тип задания: Мелодии в пределах 13 клавиш -> Определение прозвучавшего тона
      * Тип задания: Мелодии в пределах 37 клавиш -> Поиск прозвучавшего тона
+     * Тип задания: Мелодии в пределах 13 клавиш -> Определение последовательности из 2-х звуков
      */
 
-    public enum Task { eUpDown = 0, eSearchTone, eDefineTone, eSearch37, eUnknown};
+    public enum Task { eUpDown = 0, eSearchTone, eDefineTone, eSearch37, eSequence2, eUnknown};
 
 public static class TaskConverter
 {
@@ -26,6 +27,7 @@ public static class TaskConverter
         taskShortName.Add(Task.eSearchTone, "Поиск ноты");
         taskShortName.Add(Task.eDefineTone, "Определение ноты");
         taskShortName.Add(Task.eSearch37, "Поиск 37 тонов");
+        taskShortName.Add(Task.eSequence2, "Последовательность из 2 звуков");
         taskShortName.Add(Task.eUnknown, "Unknown Shit");
 
         taskLongName = new Dictionary<string, Task>();
@@ -33,6 +35,7 @@ public static class TaskConverter
         taskLongName.Add("Тип задания: Мелодии в пределах 13 клавиш -> Поиск прозвучавшего тона", Task.eSearchTone);
         taskLongName.Add("Тип задания: Мелодии в пределах 13 клавиш -> Определение прозвучавшего тона", Task.eDefineTone);
         taskLongName.Add("Тип задания: Мелодии в пределах 37 клавиш -> Поиск прозвучавшего тона", Task.eSearch37);
+        taskLongName.Add("Тип задания: Мелодии в пределах 13 клавиш -> Определение последовательности из 2-х звуков", Task.eSequence2);
     }
 
     public static string AsString(Task eValue)

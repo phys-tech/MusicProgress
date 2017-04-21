@@ -5,6 +5,7 @@ using System.Web;
 
 namespace MusicProgress.Backend
 {
+    //! Parent class for Factory method
     public abstract class DataCreator
     {
         // fabric method
@@ -63,6 +64,9 @@ namespace MusicProgress.Backend
         }
     }
 
+    //*****************************************************************
+    //! Second level of inheritance in Factory method
+
     public class Search37Creator : SearchToneCreator
     {
         public override DataChunk FactoryMethod()
@@ -73,6 +77,18 @@ namespace MusicProgress.Backend
         {
             return new Search37Tone(_date);
         }    
+    }
+
+    public class Sequence2NotesCreator : DefineToneCreator
+    {
+        public override DataChunk FactoryMethod()
+        {
+            return new Sequence2Notes();
+        }
+        public override DataChunk FactoryMethod_2(DateTime _date)
+        {
+            return new Sequence2Notes(_date);
+        }
     }
 
 

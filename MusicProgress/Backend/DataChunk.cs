@@ -231,4 +231,13 @@ namespace MusicProgress.Backend
         }
     }
 
+    public class Sequence2Notes : DefineToneData
+    {
+        public Sequence2Notes() : base() { }
+        public Sequence2Notes(DateTime _date) : base (_date)
+        {
+            task = Task.eSequence2;
+        }
+    }
+
 }

@@ -27,6 +27,7 @@ namespace MusicProgress.Backend
             factoryMap.Add(Task.eSearchTone, new SearchToneCreator());
             factoryMap.Add(Task.eDefineTone, new DefineToneCreator());
             factoryMap.Add(Task.eSearch37, new Search37Creator());
+            factoryMap.Add(Task.eSequence2, new Sequence2NotesCreator());
             factoryMap.Add(Task.eUnknown, new UnknownCreator());
 
             LoadData();
