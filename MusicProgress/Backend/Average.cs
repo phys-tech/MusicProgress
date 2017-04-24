@@ -11,6 +11,8 @@ namespace MusicProgress.Backend
         {
             if (_task == Task.eSearchTone || _task == Task.eSearch37)
                 return new AverageClicks(_task);
+            else if (_task == Task.eDefineTone || _task == Task.eSequence2)
+                return new AverageAttempts(_task);
             else
                 return new Average(_task);
         }
@@ -74,6 +76,50 @@ namespace MusicProgress.Backend
         }
     }
 
+    public class AverageAttempts : Average
+    {
+        public int first;
+        public int second;
+        public int third;
+
+        private float averageFirst;
+        private float averageSecond;
+        private float averageThird;
+
+        public AverageAttempts(Task _task) : base(_task)
+        {
+            first = 0;
+            second = 0;
+            third = 0;
+        }
+
+        public override void CollectData(DataChunk chunk)
+        {
+            base.CollectData(chunk);
+            first += ((DefineToneData)chunk).first;
+            second += ((DefineToneData)chunk).second;
+            third += ((DefineToneData)chunk).third;
+        }
+
+        public override void CalcAverage()
+        {
+            base.CalcAverage();
+            averageFirst = first * 100 / total;
+            averageSecond = second * 100 / total;
+            averageThird = third * 100 / total;
+        }
+
+        public override string ShowAsString()
+        {
+            String result = base.ShowAsString();
+            result += "First attempt: " + averageFirst.ToString("F2") + "%";
+            result += "<br>Second attempt:" + averageSecond.ToString("F2") + "%";
+            result += "<br>Third attempt:" + averageThird.ToString("F2") + "%";
+            result += "<br>";
+            return result;
+        }
+    }
+
     public class AverageClicks : Average
     {
         public int clicks;
@@ -89,6 +135,10 @@ namespace MusicProgress.Backend
         {
             base.CollectData(chunk);
             clicks += ((SearchToneData) chunk).clicks;
+            //first += ((SearchToneData)chunk).first;
+            //second += ((SearchToneData)chunk).second;
+            //third += ((SearchToneData)chunk).third;
+
         }
 
         public override void CalcAverage() 
