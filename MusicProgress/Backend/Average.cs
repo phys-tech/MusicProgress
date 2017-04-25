@@ -112,9 +112,9 @@ namespace MusicProgress.Backend
         public override string ShowAsString()
         {
             String result = base.ShowAsString();
-            result += "First attempt: " + averageFirst.ToString("F2") + "%";
-            result += "<br>Second attempt:" + averageSecond.ToString("F2") + "%";
-            result += "<br>Third attempt:" + averageThird.ToString("F2") + "%";
+            result += "[1] attempt: " + averageFirst.ToString("F2") + "%";
+            result += "<br>[2] attempt: " + averageSecond.ToString("F2") + "%";
+            result += "<br>[3] attempt: " + averageThird.ToString("F2") + "%";
             result += "<br>";
             return result;
         }
@@ -146,7 +146,7 @@ namespace MusicProgress.Backend
         public override string ShowAsString()
         {
             String result = base.ShowAsString();
-            result += "Clicks: " + averageClicks.ToString("F2") + " %";
+            result += "<i>Clicks: " + averageClicks.ToString("F2") + " %</i>";
             result += "<br>";
             return result;
         }
