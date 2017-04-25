@@ -85,11 +85,57 @@ namespace MusicProgress.Backend
         }
     }
 
-    public class SearchToneData : DataChunk
-    { 
+    public class DefineToneData : DataChunk
+    {
         public int first;
         public int second;
         public int third;
+
+        public DefineToneData() : base() { }
+        public DefineToneData(DateTime _date)
+            : base(_date)
+        {
+            task = Task.eDefineTone;
+        }
+
+        public override bool ReadData(string[] _stringArray)
+        {
+            string[] rawData = _stringArray;
+            int i = 0;
+            while (!rawData[i].StartsWith("Количество полученных / выполненных заданий этого типа"))
+                i++;
+
+            StringParser.TwoNumbers(rawData[i], out totalTasks, out successful);
+            StringParser.ThreeNumbers(rawData[i + 1], out first, out second, out third);
+            failed = int.Parse(rawData[i + 2].Substring((rawData[i + 2].IndexOf("=") + 1)));
+            repeats = int.Parse(rawData[i + 3].Substring((rawData[i + 3].IndexOf("=") + 1)));
+            string time = rawData[i + 4].Substring(22);
+            duration = TimeSpan.ParseExact(time, durationFormat, null);
+
+            return totalTasks != 0;
+        }
+
+        public override string ShowData()
+        {
+            string sDate = date.ToLongDateString();
+            string sType = TaskConverter.AsString(task);
+            string sTotal = totalTasks.ToString();
+            string sSuccess = successful.ToString();
+            string sFail = failed.ToString();
+            string sFirst = first.ToString();
+            string sSecond = second.ToString();
+            string sThird = third.ToString();
+            string sRepeats = repeats.ToString();
+            string sTime = duration.ToString();
+            string attempts = " <u>|" + sFirst + "|" + sSecond + "|" + sThird + "</u> ";
+            string output = sDate + " - " + sType + " - " + sTotal + " (  " + sSuccess + " / " + sFail + " ) " + attempts + "[" + sRepeats + "] " + "\t\t t = " + sTime + "<br>";
+            return output;
+        }
+
+    }
+
+    public class SearchToneData : DefineToneData
+    { 
         public int clicks;
 
         public SearchToneData() : base() { }
@@ -142,54 +188,6 @@ namespace MusicProgress.Backend
             return output;
         }
 
-
-    }
-
-    public class DefineToneData : DataChunk
-    {
-        public int first;
-        public int second;
-        public int third;
-
-        public DefineToneData() : base() { }
-        public DefineToneData(DateTime _date) : base(_date) 
-        {
-            task = Task.eDefineTone;
-        }
-
-        public override bool ReadData(string[] _stringArray)
-        {
-            string[] rawData = _stringArray;
-            int i = 0;
-            while (!rawData[i].StartsWith("Количество полученных / выполненных заданий этого типа"))
-                i++;
-
-            StringParser.TwoNumbers(rawData[i], out totalTasks, out successful);
-            StringParser.ThreeNumbers(rawData[i + 1], out first, out second, out third);
-            failed = int.Parse(rawData[i + 2].Substring((rawData[i + 2].IndexOf("=") + 1)));
-            repeats = int.Parse(rawData[i + 3].Substring((rawData[i + 3].IndexOf("=") + 1)));
-            string time = rawData[i + 4].Substring(22);
-            duration = TimeSpan.ParseExact(time, durationFormat, null);
-
-            return totalTasks != 0;
-        }
-
-        public override string ShowData()
-        {
-            string sDate = date.ToLongDateString();
-            string sType = TaskConverter.AsString(task);
-            string sTotal = totalTasks.ToString();
-            string sSuccess = successful.ToString();
-            string sFail = failed.ToString();
-            string sFirst = first.ToString();
-            string sSecond = second.ToString();
-            string sThird = third.ToString();
-            string sRepeats = repeats.ToString();
-            string sTime = duration.ToString();
-            string attempts = " <u>|" + sFirst + "|" + sSecond + "|" + sThird + "</u> ";
-            string output = sDate + " - " + sType + " - " + sTotal + " (  " + sSuccess + " / " + sFail + " ) " + attempts  + "[" + sRepeats + "] " + "\t\t t = " + sTime + "<br>";
-            return output;
-        }
 
     }
 

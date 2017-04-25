@@ -9,10 +9,10 @@ namespace MusicProgress.Backend
     {
         public Average Create(Task _task)
         {
-            if (_task == Task.eSearchTone || _task == Task.eSearch37)
-                return new AverageClicks(_task);
-            else if (_task == Task.eDefineTone || _task == Task.eSequence2)
+            if (_task == Task.eDefineTone || _task == Task.eSequence2)
                 return new AverageAttempts(_task);
+            else if (_task == Task.eSearchTone || _task == Task.eSearch37)
+                return new AverageClicks(_task);
             else
                 return new Average(_task);
         }
@@ -120,7 +120,7 @@ namespace MusicProgress.Backend
         }
     }
 
-    public class AverageClicks : Average
+    public class AverageClicks : AverageAttempts
     {
         public int clicks;
 
@@ -135,10 +135,6 @@ namespace MusicProgress.Backend
         {
             base.CollectData(chunk);
             clicks += ((SearchToneData) chunk).clicks;
-            //first += ((SearchToneData)chunk).first;
-            //second += ((SearchToneData)chunk).second;
-            //third += ((SearchToneData)chunk).third;
-
         }
 
         public override void CalcAverage() 
