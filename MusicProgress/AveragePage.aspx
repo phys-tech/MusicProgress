@@ -7,7 +7,7 @@
         <h1><%: Title %></h1>        
     </hgroup>
 
-    <asp:Panel ID="Panel1" runat="server" Height="803px">
+    <asp:Panel ID="Panel1" runat="server" Height="1028px">
     </asp:Panel>
 
     <asp:Chart ID="MyChart" runat="server">

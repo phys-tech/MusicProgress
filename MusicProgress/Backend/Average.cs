@@ -29,6 +29,7 @@ namespace MusicProgress.Backend
         public int count;
 
         private Task task;
+        private float averageTotal;
         private float averageSuccess;
         private float averageFailed;
         private float averageRepeats;
@@ -56,9 +57,10 @@ namespace MusicProgress.Backend
 
         public virtual void CalcAverage()
         {
-            averageSuccess = (float)success * 100 / total;
-            averageFailed = (float)failed * 100 / total;
-            averageRepeats = (float)repeats * 100 / total;
+            averageTotal = (float) total / count;
+            averageSuccess = (float) success / count;
+            averageFailed = (float) failed / count;
+            averageRepeats = (float) repeats / count;
             float averageSeconds = (float)duration.TotalSeconds / count;
             averageDuration = new TimeSpan(0, 0, (int)averageSeconds);
         }
@@ -67,9 +69,11 @@ namespace MusicProgress.Backend
         {
             String result;
             result = "<b>" + TaskConverter.AsString(task) + "</b>";
-            result += "<br>Success: " + averageSuccess.ToString("F2") + " %";
-            result += "<br>Failed: " + averageFailed.ToString("F2") + " %";
-            result += "<br>Repeats: " + averageRepeats.ToString("F2") + " %";
+            result += " (" + count.ToString() + " пачек)";
+            result += "<br>Total: " + averageTotal.ToString("F2");
+            result += "<br>Success: " + averageSuccess.ToString("F2");
+            result += "<br>Failed: " + averageFailed.ToString("F2");
+            result += "<br>Repeats: " + averageRepeats.ToString("F2");
             result += "<br>Duration: " + averageDuration.ToString();
             result += "<br>";
             return result;
@@ -104,17 +108,17 @@ namespace MusicProgress.Backend
         public override void CalcAverage()
         {
             base.CalcAverage();
-            averageFirst = first * 100 / total;
-            averageSecond = second * 100 / total;
-            averageThird = third * 100 / total;
+            averageFirst = (float) first / count;
+            averageSecond = (float) second / count;
+            averageThird = (float) third / count;
         }
 
         public override string ShowAsString()
         {
             String result = base.ShowAsString();
-            result += "[1] attempt: " + averageFirst.ToString("F2") + "%";
-            result += "<br>[2] attempt: " + averageSecond.ToString("F2") + "%";
-            result += "<br>[3] attempt: " + averageThird.ToString("F2") + "%";
+            result += "[1] attempt: " + averageFirst.ToString("F2");
+            result += "<br>[2] attempt: " + averageSecond.ToString("F2");
+            result += "<br>[3] attempt: " + averageThird.ToString("F2");
             result += "<br>";
             return result;
         }
@@ -140,13 +144,13 @@ namespace MusicProgress.Backend
         public override void CalcAverage() 
         {
             base.CalcAverage();
-            averageClicks = clicks * 100 / total;
+            averageClicks = (float) clicks / count;
         }
 
         public override string ShowAsString()
         {
             String result = base.ShowAsString();
-            result += "<i>Clicks: " + averageClicks.ToString("F2") + " %</i>";
+            result += "<i>Clicks: " + averageClicks.ToString("F2") + "</i>";
             result += "<br>";
             return result;
         }
