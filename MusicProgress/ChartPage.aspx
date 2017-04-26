@@ -3,16 +3,9 @@
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
 
 <!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title></title>
-</head>
-<body>
-    
+  
     <div>
-    <p>WTF man, where's the stuff?</p>
-    <asp:Chart ID="MyChart" runat="server">
+    <asp:Chart ID="MyChart" runat="server" Height="675px" Width="1357px">
         <Series>
             <asp:Series Name="Series1">
             </asp:Series>
@@ -30,6 +23,4 @@
 
     </div>
     
-</body>
-</html>
 </asp:Content>
