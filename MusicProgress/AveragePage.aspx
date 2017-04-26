@@ -10,20 +10,7 @@
     <asp:Panel ID="Panel1" runat="server" Height="1028px">
     </asp:Panel>
 
-    <asp:Chart ID="MyChart" runat="server">
-        <Series>
-            <asp:Series Name="Series1">
-            </asp:Series>
-        </Series>
-        <Series>
-            <asp:Series Name="Series2">
-            </asp:Series>
-        </Series>
-        <ChartAreas>
-            <asp:ChartArea Name="ChartArea1">
-            </asp:ChartArea>
-        </ChartAreas>
-    </asp:Chart>
+
 
     <asp:GridView ID="GridView1" runat="server">
     </asp:GridView>
@@ -37,8 +24,9 @@
         </p>
         <ul>
             <li><a runat="server" href="~/">Home</a></li>
-            <li><a runat="server" href="~/AveragePage.aspx">Average</a></li>
             <li><a runat="server" href="DataPage.aspx">Data</a></li>
+            <li><a runat="server" href="AveragePage.aspx">Average</a></li>
+            <li><a runat="server" href="ChartPage.aspx">Chart</a></li>
         </ul>
     </aside>
 </asp:Content>
