@@ -21,21 +21,28 @@ namespace MusicProgress
             collector = new DataCollector();
             data = collector.data;
 
-            //Set the DataSource property of the Chart control to the DataTabel
-            MyChart.DataSource = PrepareData(Task.eSearchTone);
-
-            //Give two columns of data to Y-axle
-            MyChart.Series[0].YValueMembers = "Volume1";
-            MyChart.Series[1].YValueMembers = "Volume2";
-
-            //Set the X-axle as date value
-            MyChart.Series[0].XValueMember = "Date";
-
-            //Bind the Chart control with the setting above
-            MyChart.DataBind();
-            MyChart.Series[0].ToolTip = "tooltip1";
-            MyChart.Series[1].ToolTip = "tooltip--";
-            
+            foreach (Task task in Enum.GetValues(typeof(Task)))
+            {
+                Chart chart1 = new Chart();
+                chart1.Series.Add("Series1");
+                chart1.Series.Add("Series2");
+                chart1.Height = 670;
+                chart1.Width = 1300;
+                chart1.Series[0].YValueMembers = "Y1";
+                chart1.Series[1].YValueMembers = "Y2";
+                chart1.Series[0].XValueMember = "Date";
+                chart1.Series[0].ChartType = SeriesChartType.StackedColumn;
+                chart1.Series[1].ChartType = SeriesChartType.StackedColumn;
+                chart1.ChartAreas.Add("chartarea");
+                chart1.ChartAreas[0].AxisX.IntervalAutoMode = IntervalAutoMode.VariableCount;
+                chart1.ChartAreas[0].AxisX.TextOrientation = TextOrientation.Rotated90;
+                chart1.ChartAreas[0].AxisX.LabelStyle.Angle = 90;
+                chart1.Titles.Add(TaskConverter.AsString(task));
+                chart1.Titles[0].Font = new System.Drawing.Font("Arial", 14);
+                chart1.DataSource = PrepareData(task);
+                chart1.DataBind();
+                Panel1.Controls.Add(chart1);
+            }
         }
 
         private DataTable PrepareData(Task _task)
@@ -44,8 +51,8 @@ namespace MusicProgress
 
             //Add three columns to the DataTable
             table.Columns.Add("Date");
-            table.Columns.Add("Volume1");
-            table.Columns.Add("Volume2");
+            table.Columns.Add("Y1");
+            table.Columns.Add("Y2");
 
             List<DataChunk> filterTask = data.Where(u => u.task == _task).ToList();
             var sorted = filterTask.OrderBy(ch => ch.date);
@@ -57,12 +64,30 @@ namespace MusicProgress
                 dr = table.NewRow();
                 
                 dr["Date"] = chunk.date.ToShortDateString();
-                dr["Volume1"] = chunk.successful;
-                dr["Volume2"] = chunk.failed;                
+                dr["Y1"] = chunk.successful;
+                dr["Y2"] = chunk.failed;                
                 table.Rows.Add(dr);                
             }
             return table;
         }
+
+        /*
+    <asp:Chart ID="MyChart" runat="server" Height="675px" Width="1357px">
+        <Series>
+            <asp:Series Name="Series1" ChartType="StackedColumn" LabelAngle="45"></asp:Series>
+            <asp:Series Name="Series2" ChartArea="ChartArea1" ChartType="StackedColumn" LabelToolTip="e56yrt" LegendText="4w57yrtyety" LegendToolTip="6w456"></asp:Series>
+        </Series>
+        <ChartAreas>
+            <asp:ChartArea Name="ChartArea1">
+                <AxisX IntervalAutoMode="VariableCount" IsLabelAutoFit="False" TextOrientation="Rotated90">
+                    <LabelStyle Angle="90" />
+                </AxisX>
+                <AxisX2 TextOrientation="Rotated90">
+                </AxisX2>
+            </asp:ChartArea>
+        </ChartAreas>
+    </asp:Chart>         
+         */
 
     }
 }
