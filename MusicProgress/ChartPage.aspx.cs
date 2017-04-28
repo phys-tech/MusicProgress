@@ -24,15 +24,29 @@ namespace MusicProgress
             foreach (Task task in Enum.GetValues(typeof(Task)))
             {
                 Chart chart1 = new Chart();
-                chart1.Series.Add("Series1");
-                chart1.Series.Add("Series2");
                 chart1.Height = 670;
                 chart1.Width = 1300;
+                chart1.Series.Add("Series1");
+                chart1.Series.Add("Series2");
+                chart1.Series.Add("Series3");
+                chart1.Series.Add("Failed");
+                chart1.Series.Add("Clicks");
+                chart1.Series.Add("Repeats");
+                chart1.Series[0].XValueMember = "Date";
                 chart1.Series[0].YValueMembers = "Y1";
                 chart1.Series[1].YValueMembers = "Y2";
-                chart1.Series[0].XValueMember = "Date";
+                chart1.Series[2].YValueMembers = "Y3";
+                chart1.Series[3].YValueMembers = "Failed";
+                chart1.Series[4].YValueMembers = "Clicks";
+                chart1.Series[5].YValueMembers = "Repeats";
                 chart1.Series[0].ChartType = SeriesChartType.StackedColumn;
                 chart1.Series[1].ChartType = SeriesChartType.StackedColumn;
+                chart1.Series[2].ChartType = SeriesChartType.StackedColumn;
+                chart1.Series[3].ChartType = SeriesChartType.StackedColumn;
+                chart1.Series[4].ChartType = SeriesChartType.Line;
+                chart1.Series[5].ChartType = SeriesChartType.Line;
+                chart1.Series[4].BorderWidth = 2;
+                chart1.Series[5].BorderWidth = 2;
                 chart1.ChartAreas.Add("chartarea");
                 chart1.ChartAreas[0].AxisX.IntervalAutoMode = IntervalAutoMode.VariableCount;
                 chart1.ChartAreas[0].AxisX.TextOrientation = TextOrientation.Rotated90;
@@ -53,6 +67,10 @@ namespace MusicProgress
             table.Columns.Add("Date");
             table.Columns.Add("Y1");
             table.Columns.Add("Y2");
+            table.Columns.Add("Y3");
+            table.Columns.Add("Clicks");
+            table.Columns.Add("Repeats");
+            table.Columns.Add("Failed");
 
             List<DataChunk> filterTask = data.Where(u => u.task == _task).ToList();
             var sorted = filterTask.OrderBy(ch => ch.date);
@@ -64,9 +82,24 @@ namespace MusicProgress
                 dr = table.NewRow();
                 
                 dr["Date"] = chunk.date.ToShortDateString();
-                dr["Y1"] = chunk.successful;
-                dr["Y2"] = chunk.failed;                
-                table.Rows.Add(dr);                
+                dr["Repeats"] = chunk.repeats;
+                dr["Failed"] = chunk.failed;
+                if (chunk is UpDownData)
+                {
+                    dr["Y1"] = chunk.successful;
+                }
+                if (chunk is DefineToneData)
+                {
+                    dr["Y1"] = (chunk as DefineToneData).first;
+                    dr["Y2"] = (chunk as DefineToneData).second;
+                    dr["Y3"] = (chunk as DefineToneData).third;
+                }
+                if (chunk is SearchToneData)
+                {
+                    dr["Clicks"] = (chunk as SearchToneData).clicks;
+                }
+                table.Rows.Add(dr);
+                Type type = chunk.GetType();
             }
             return table;
         }
