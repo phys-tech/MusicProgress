@@ -9,7 +9,7 @@ namespace MusicProgress.Backend
     {
         public Average Create(Task _task)
         {
-            if (_task == Task.eDefineTone || _task == Task.eSequence2)
+            if (_task == Task.eDefineTone || _task == Task.eSequence2 || _task == Task.eDefine37)
                 return new AverageAttempts(_task);
             else if (_task == Task.eSearchTone || _task == Task.eSearch37)
                 return new AverageClicks(_task);

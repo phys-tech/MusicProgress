@@ -91,5 +91,17 @@ namespace MusicProgress.Backend
         }
     }
 
+    public class Define37NotesCreator : DefineToneCreator
+    {
+        public override DataChunk FactoryMethod()
+        {
+            return new Define37Tone();
+        }
+        public override DataChunk FactoryMethod_2(DateTime _date)
+        {
+            return new Define37Tone(_date);
+        }
+    }
+
 
 }

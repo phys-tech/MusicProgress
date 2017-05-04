@@ -238,4 +238,13 @@ namespace MusicProgress.Backend
         }
     }
 
+    public class Define37Tone : DefineToneData
+    {
+        public Define37Tone() : base() { }
+        public Define37Tone(DateTime _date) : base(_date)
+        {
+            task = Task.eDefine37;
+        }
+    }
+
 }
