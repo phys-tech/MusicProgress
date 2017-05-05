@@ -5,27 +5,25 @@ using System.Web;
 
 namespace MusicProgress.Backend
 {
-     
+
     public class Aggregator
     {
-        private DataCollector dataCollector;
-
         public Dictionary<Task, Average> mapAverage;
 
-        public Aggregator(DataCollector collector)
+        public Aggregator()
         {
-            dataCollector = collector;
+            DataCollector dataCollector = MySingleton.GetMe().collector;
             mapAverage = new Dictionary<Task, Average>();
             AverageCreator creator = new AverageCreator();
             foreach (Task task in Enum.GetValues(typeof(Task)))
                 mapAverage.Add(task, creator.Create(task));
 
-            CalcStats();
+            CalcStats(dataCollector);
         }
 
-        public void CalcStats()
+        private void CalcStats(DataCollector collector)
         {
-            var data = dataCollector.data;
+            var data = collector.data;
 
             // C++ style             
             foreach (DataChunk chunk in data)

@@ -20,8 +20,6 @@ namespace MusicProgress.Backend
 
         public DataCollector()
         {
-            TaskConverter.Init();
-
             factoryMap = new Dictionary<Task, DataCreator>();
             factoryMap.Add(Task.eUpDown, new UpDownCreator());
             factoryMap.Add(Task.eSearchTone, new SearchToneCreator());

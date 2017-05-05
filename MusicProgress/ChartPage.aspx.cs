@@ -13,12 +13,11 @@ namespace MusicProgress
 {
     public partial class ChartPage : System.Web.UI.Page
     {
-        private DataCollector collector;
         private List<DataChunk> data;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            collector = new DataCollector();
+            DataCollector collector = MySingleton.GetMe().collector;
             data = collector.data;
 
             foreach (Task task in Enum.GetValues(typeof(Task)))

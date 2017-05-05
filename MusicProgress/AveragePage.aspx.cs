@@ -15,8 +15,7 @@ namespace MusicProgress
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            DataCollector dataCollector = new DataCollector();
-            Aggregator aggregator = new Aggregator(dataCollector);
+            Aggregator aggregator = new Aggregator();
 
             foreach (Task task in Enum.GetValues(typeof(Task)))
             {

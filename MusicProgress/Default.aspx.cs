@@ -12,8 +12,7 @@ namespace MusicProgress
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            DataCollector dataCollector;
-            dataCollector = new DataCollector();
+            DataCollector dataCollector = MySingleton.GetMe().collector;
             lFilenames.Text = dataCollector.allfiles;
             lTotalFilesNum.Text = dataCollector.filesCounter.ToString();
         }

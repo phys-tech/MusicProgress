@@ -10,11 +10,9 @@ namespace MusicProgress
 {
     public partial class DataPage : Page
     {
-        DataCollector dataCollector;
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            dataCollector = new DataCollector();
+            DataCollector dataCollector = MySingleton.GetMe().collector;
             var localData = dataCollector.data;
 
             localData.Sort(CompareDataChunks);

@@ -21,7 +21,12 @@ public static class TaskConverter
     private static Dictionary<Task, string> taskShortName;
     private static Dictionary<string, Task> taskLongName;
 
-    public static void Init()
+    static TaskConverter()
+    {
+        Init();
+    }
+
+    private static void Init()
     {
         taskShortName = new Dictionary<Task, string>();
         taskShortName.Add(Task.eUpDown, "Выше-ниже");
