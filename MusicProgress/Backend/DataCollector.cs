@@ -6,6 +6,8 @@ using System.IO;
 
 namespace MusicProgress.Backend
 {
+    using ListOfChunks = List<DataChunk>;
+
     public class DataCollector
     {
         private const string pathToFiles = "F:\\MyStuff\\Temp\\MusicResults\\";
@@ -14,7 +16,7 @@ namespace MusicProgress.Backend
         public string allfiles;
         public int filesCounter;
 
-        public List<DataChunk> data;
+        public ListOfChunks data;
 
         private Dictionary<Task, DataCreator> factoryMap;
 
@@ -36,7 +38,7 @@ namespace MusicProgress.Backend
         {
             allfiles = "";
             filesCounter = 0;
-            data = new List<DataChunk>();
+            data = new ListOfChunks();
             IEnumerable<string> filelist = Directory.EnumerateFiles(pathToFiles, extension, SearchOption.TopDirectoryOnly);
             foreach (string file in filelist)
             {

@@ -5,6 +5,7 @@ using System.Web;
 
 namespace MusicProgress.Backend
 {
+    using ListOfChunks = List<DataChunk>;
 
     public class Aggregator
     {
@@ -12,19 +13,16 @@ namespace MusicProgress.Backend
 
         public Aggregator()
         {
-            DataCollector dataCollector = MySingleton.GetMe().collector;
             mapAverage = new Dictionary<Task, Average>();
             AverageCreator creator = new AverageCreator();
             foreach (Task task in Enum.GetValues(typeof(Task)))
                 mapAverage.Add(task, creator.Create(task));
 
-            CalcStats(dataCollector);
+            CalcStats(MySingleton.GetMe().collector.data);
         }
 
-        private void CalcStats(DataCollector collector)
+        private void CalcStats(ListOfChunks data)
         {
-            var data = collector.data;
-
             // C++ style             
             foreach (DataChunk chunk in data)
             {

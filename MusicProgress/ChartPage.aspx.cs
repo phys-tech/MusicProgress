@@ -11,14 +11,15 @@ using MusicProgress.Backend;
 
 namespace MusicProgress
 {
+    using ListOfChunks = List<DataChunk>;
+
     public partial class ChartPage : System.Web.UI.Page
     {
-        private List<DataChunk> data;
+        private ListOfChunks data;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            DataCollector collector = MySingleton.GetMe().collector;
-            data = collector.data;
+            data = MySingleton.GetMe().collector.data;
 
             foreach (Task task in Enum.GetValues(typeof(Task)))
             {
@@ -71,7 +72,7 @@ namespace MusicProgress
             table.Columns.Add("Repeats");
             table.Columns.Add("Failed");
 
-            List<DataChunk> filterTask = data.Where(u => u.task == _task).ToList();
+            ListOfChunks filterTask = data.Where(u => u.task == _task).ToList();
             var sorted = filterTask.OrderBy(ch => ch.date);
 
             foreach (DataChunk chunk in sorted)

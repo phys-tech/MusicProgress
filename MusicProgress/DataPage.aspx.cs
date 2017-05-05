@@ -12,8 +12,7 @@ namespace MusicProgress
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            DataCollector dataCollector = MySingleton.GetMe().collector;
-            var localData = dataCollector.data;
+            var localData = MySingleton.GetMe().collector.data;
 
             localData.Sort(CompareDataChunks);
             lRawData.Text = "";
