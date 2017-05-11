@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data;
 
 namespace MusicProgress.Backend
 {
@@ -35,6 +36,13 @@ namespace MusicProgress.Backend
 
         public abstract bool ReadData(string[] _stringArray);
         public abstract string ShowData();
+
+        public virtual void PrepareDataForChart(ref DataRow row)
+        {            
+            row["Date"] = date.ToShortDateString();
+            row["Repeats"] = repeats;
+            row["Failed"] = failed;            
+        }
 
     }
 
@@ -82,6 +90,12 @@ namespace MusicProgress.Backend
             string sTime = duration.ToString();
             string output = sDate + " - " + sType + " - " + sTotal + " (  " + sSuccess + " / " + sFail + " ) " + "[" + sRepeats + "] " + "\t\t t = " + sTime + "<br>";
             return output;
+        }
+
+        public override void PrepareDataForChart(ref DataRow row)
+        {
+            base.PrepareDataForChart(ref row);
+            row["Y1"] = successful;
         }
     }
 
@@ -132,6 +146,13 @@ namespace MusicProgress.Backend
             return output;
         }
 
+        public override void PrepareDataForChart(ref DataRow row)
+        {
+            base.PrepareDataForChart(ref row);
+            row["Y1"] = first;
+            row["Y2"] = second;
+            row["Y3"] = third;
+        }
     }
 
     public class SearchToneData : DefineToneData
@@ -188,6 +209,11 @@ namespace MusicProgress.Backend
             return output;
         }
 
+        public override void PrepareDataForChart(ref DataRow row)
+        {
+            base.PrepareDataForChart(ref row);
+            row["Clicks"] = clicks;
+        }
 
     }
 

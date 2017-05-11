@@ -77,50 +77,13 @@ namespace MusicProgress
 
             foreach (DataChunk chunk in sorted)
             {
-                DataRow dr;
-                //Add row to the table which contains real data
-                dr = table.NewRow();
-                
-                dr["Date"] = chunk.date.ToShortDateString();
-                dr["Repeats"] = chunk.repeats;
-                dr["Failed"] = chunk.failed;
-                if (chunk is UpDownData)
-                {
-                    dr["Y1"] = chunk.successful;
-                }
-                if (chunk is DefineToneData)
-                {
-                    dr["Y1"] = (chunk as DefineToneData).first;
-                    dr["Y2"] = (chunk as DefineToneData).second;
-                    dr["Y3"] = (chunk as DefineToneData).third;
-                }
-                if (chunk is SearchToneData)
-                {
-                    dr["Clicks"] = (chunk as SearchToneData).clicks;
-                }
-                table.Rows.Add(dr);
-                Type type = chunk.GetType();
+                DataRow dataRow;
+                dataRow = table.NewRow();
+                chunk.PrepareDataForChart(ref dataRow);
+                table.Rows.Add(dataRow);
             }
             return table;
         }
-
-        /*
-    <asp:Chart ID="MyChart" runat="server" Height="675px" Width="1357px">
-        <Series>
-            <asp:Series Name="Series1" ChartType="StackedColumn" LabelAngle="45"></asp:Series>
-            <asp:Series Name="Series2" ChartArea="ChartArea1" ChartType="StackedColumn" LabelToolTip="e56yrt" LegendText="4w57yrtyety" LegendToolTip="6w456"></asp:Series>
-        </Series>
-        <ChartAreas>
-            <asp:ChartArea Name="ChartArea1">
-                <AxisX IntervalAutoMode="VariableCount" IsLabelAutoFit="False" TextOrientation="Rotated90">
-                    <LabelStyle Angle="90" />
-                </AxisX>
-                <AxisX2 TextOrientation="Rotated90">
-                </AxisX2>
-            </asp:ChartArea>
-        </ChartAreas>
-    </asp:Chart>         
-         */
 
     }
 }

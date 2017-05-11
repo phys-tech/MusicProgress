@@ -69,11 +69,8 @@ namespace MusicProgress.Backend
                 int a = 0;
                 string[] tempStringArray = new string[15];
                 while (!board[lineNumber].StartsWith("————————————————"))
-                {
-                    tempStringArray[a] = board[lineNumber];
-                    lineNumber++;
-                    a++;
-                }
+                    tempStringArray[a++] = board[lineNumber++];
+
                 if (tempData.ReadData(tempStringArray))
                     data.Add(tempData);
 
