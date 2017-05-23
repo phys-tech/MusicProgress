@@ -25,13 +25,13 @@ namespace MusicProgress.Backend
             successful = 0;
             failed = 0;
             repeats = 0;
-            durationFormat = @"m\:ss";
+            durationFormat = @"mm\:ss";
         }
 
         public DataChunk(DateTime _date)
         {
             date = _date;
-            durationFormat = @"m\:ss";
+            durationFormat = @"mm\:ss";
         }
 
         public abstract bool ReadData(string[] _stringArray);
@@ -41,7 +41,8 @@ namespace MusicProgress.Backend
         {            
             row["Date"] = date.ToShortDateString();
             row["Repeats"] = repeats;
-            row["Failed"] = failed;            
+            row["Failed"] = failed;
+            row["Duration"] = duration;
         }
 
     }
@@ -73,7 +74,7 @@ namespace MusicProgress.Backend
             successful = int.Parse(rawData[i + 1].Substring(rawData[i + 1].IndexOf("=") + 1));
             failed = int.Parse(rawData[i + 2].Substring(rawData[i + 2].IndexOf("=") + 1));
             repeats = int.Parse(rawData[i + 3].Substring(rawData[i + 3].IndexOf("=") + 1));            
-            string time = rawData[i + 4].Substring(22);
+            string time = rawData[i + 4].Substring(21);
             duration = TimeSpan.ParseExact(time, durationFormat, null);
             
             return totalTasks != 0;
@@ -123,7 +124,7 @@ namespace MusicProgress.Backend
             StringParser.ThreeNumbers(rawData[i + 1], out first, out second, out third);
             failed = int.Parse(rawData[i + 2].Substring((rawData[i + 2].IndexOf("=") + 1)));
             repeats = int.Parse(rawData[i + 3].Substring((rawData[i + 3].IndexOf("=") + 1)));
-            string time = rawData[i + 4].Substring(22);
+            string time = rawData[i + 4].Substring(21);
             duration = TimeSpan.ParseExact(time, durationFormat, null);
 
             return totalTasks != 0;
@@ -185,7 +186,7 @@ namespace MusicProgress.Backend
             failed = int.Parse(rawData[i + 2].Substring((rawData[i + 2].IndexOf("=") + 1)));
             repeats = int.Parse(rawData[i + 3].Substring((rawData[i + 3].IndexOf("=") + 1)));
             clicks = int.Parse(rawData[i + 4].Substring((rawData[i + 4].IndexOf("=") + 1)));
-            string time = rawData[i + 5].Substring(22);
+            string time = rawData[i + 5].Substring(21);
             duration = TimeSpan.ParseExact(time, durationFormat, null);
 
             return totalTasks != 0;

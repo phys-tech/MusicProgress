@@ -32,25 +32,35 @@ namespace MusicProgress
                 chart1.Series.Add("Failed");
                 chart1.Series.Add("Clicks");
                 chart1.Series.Add("Repeats");
+                chart1.Series.Add("Duration");
                 chart1.Series[0].XValueMember = "Date";
+                //chart1.Series[0].XValueType = ChartValueType.DateTimeOffset;
                 chart1.Series[0].YValueMembers = "Y1";
                 chart1.Series[1].YValueMembers = "Y2";
                 chart1.Series[2].YValueMembers = "Y3";
                 chart1.Series[3].YValueMembers = "Failed";
                 chart1.Series[4].YValueMembers = "Clicks";
                 chart1.Series[5].YValueMembers = "Repeats";
+                chart1.Series[6].YValueMembers = "Duration";
                 chart1.Series[0].ChartType = SeriesChartType.StackedColumn;
                 chart1.Series[1].ChartType = SeriesChartType.StackedColumn;
                 chart1.Series[2].ChartType = SeriesChartType.StackedColumn;
                 chart1.Series[3].ChartType = SeriesChartType.StackedColumn;
                 chart1.Series[4].ChartType = SeriesChartType.Line;
                 chart1.Series[5].ChartType = SeriesChartType.Line;
+                chart1.Series[6].ChartType = SeriesChartType.Line;
                 chart1.Series[4].BorderWidth = 2;
                 chart1.Series[5].BorderWidth = 2;
+                chart1.Series[6].BorderWidth = 2;
                 chart1.ChartAreas.Add("chartarea");
                 chart1.ChartAreas[0].AxisX.IntervalAutoMode = IntervalAutoMode.VariableCount;
                 chart1.ChartAreas[0].AxisX.TextOrientation = TextOrientation.Rotated90;
                 chart1.ChartAreas[0].AxisX.LabelStyle.Angle = 90;
+
+                chart1.Series[6].YValueType = ChartValueType.Time;
+                chart1.Series[6].YAxisType = AxisType.Secondary;
+                chart1.ChartAreas[0].AxisY2.LabelStyle.Format = "mm:ss";
+
                 chart1.Titles.Add(TaskConverter.AsString(task));
                 chart1.Titles[0].Font = new System.Drawing.Font("Arial", 14);
                 chart1.DataSource = PrepareData(task);
@@ -71,6 +81,7 @@ namespace MusicProgress
             table.Columns.Add("Clicks");
             table.Columns.Add("Repeats");
             table.Columns.Add("Failed");
+            table.Columns.Add("Duration");
 
             ListOfChunks filterTask = data.Where(u => u.task == _task).ToList();
             var sorted = filterTask.OrderBy(ch => ch.date);
