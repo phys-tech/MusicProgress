@@ -30,7 +30,7 @@ namespace MusicProgress
             {
                 Chart chart1 = new Chart();
                 chart1.Height = 670;
-                chart1.Width = 1300;
+                chart1.Width = 960;
                 chart1.Series.Add("Series1");
                 chart1.Series.Add("Series2");
                 chart1.Series.Add("Series3");
@@ -94,12 +94,13 @@ namespace MusicProgress
             table.Columns.Add("Failed");
             table.Columns.Add("Duration");
 
-            ListOfChunks filterTask = data.Where(u => u.task == _task).ToList();
+            var filterTask = data.Where(u => u.task == _task);
+            var filterDate = filterTask;
             if (useStart)
-                filterTask = filterTask.Where(h => h.date >= startDate).ToList();
+                filterDate = filterDate.Where(h => h.date >= startDate);
             if (useEnd)
-                filterTask = filterTask.Where(f => f.date <= endDate).ToList();
-            var sorted = filterTask.OrderBy(ch => ch.date);
+                filterDate = filterDate.Where(f => f.date <= endDate);
+            var sorted = filterDate.OrderBy(ch => ch.date);
 
             foreach (DataChunk chunk in sorted)
             {
