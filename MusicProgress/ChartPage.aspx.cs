@@ -52,6 +52,7 @@ namespace MusicProgress
                 chart1.Series[4].BorderWidth = 2;
                 chart1.Series[5].BorderWidth = 2;
                 chart1.Series[6].BorderWidth = 2;
+                //chart1.Series[4].Color = System.Drawing.Color.Red;
                 chart1.ChartAreas.Add("chartarea");
                 chart1.ChartAreas[0].AxisX.IntervalAutoMode = IntervalAutoMode.VariableCount;
                 chart1.ChartAreas[0].AxisX.TextOrientation = TextOrientation.Rotated90;
@@ -63,6 +64,11 @@ namespace MusicProgress
 
                 chart1.Titles.Add(TaskConverter.AsString(task));
                 chart1.Titles[0].Font = new System.Drawing.Font("Arial", 14);
+
+                chart1.Legends.Add("MyLegend");
+                chart1.Legends[0].Alignment = System.Drawing.StringAlignment.Far;
+                chart1.Legends[0].Docking = Docking.Top;
+                chart1.Legends[0].LegendItemOrder = LegendItemOrder.ReversedSeriesOrder;
                 chart1.DataSource = PrepareData(task);
                 chart1.DataBind();
                 Panel1.Controls.Add(chart1);
