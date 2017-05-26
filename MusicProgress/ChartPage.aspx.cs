@@ -16,11 +16,16 @@ namespace MusicProgress
     public partial class ChartPage : System.Web.UI.Page
     {
         private ListOfChunks data;
+        private DateTime startDate;
+        private DateTime endDate;
+        private bool useStart = false;
+        private bool useEnd = false;
 
         protected void Page_Load(object sender, EventArgs e)
-        {
+        {            
             data = MySingleton.GetMe().collector.data;
 
+            pCharts.Controls.Clear();
             foreach (Task task in Enum.GetValues(typeof(Task)))
             {
                 Chart chart1 = new Chart();
@@ -71,7 +76,7 @@ namespace MusicProgress
                 chart1.Legends[0].LegendItemOrder = LegendItemOrder.ReversedSeriesOrder;
                 chart1.DataSource = PrepareData(task);
                 chart1.DataBind();
-                Panel1.Controls.Add(chart1);
+                pCharts.Controls.Add(chart1);
             }
         }
 
@@ -90,6 +95,10 @@ namespace MusicProgress
             table.Columns.Add("Duration");
 
             ListOfChunks filterTask = data.Where(u => u.task == _task).ToList();
+            if (useStart)
+                filterTask = filterTask.Where(h => h.date >= startDate).ToList();
+            if (useEnd)
+                filterTask = filterTask.Where(f => f.date <= endDate).ToList();
             var sorted = filterTask.OrderBy(ch => ch.date);
 
             foreach (DataChunk chunk in sorted)
@@ -100,6 +109,20 @@ namespace MusicProgress
                 table.Rows.Add(dataRow);
             }
             return table;
+        }
+
+        protected void cdStartDate_SelectionChanged(object sender, EventArgs e)
+        {
+            useStart = true;
+            startDate = cdStartDate.SelectedDate;
+            Page_Load(sender, e);
+        }
+
+        protected void cdEndDate_SelectionChanged(object sender, EventArgs e)
+        {
+            useEnd = true;
+            endDate = cdEndDate.SelectedDate;
+            Page_Load(sender, e);
         }
 
     }
