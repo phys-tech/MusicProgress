@@ -83,8 +83,6 @@ namespace MusicProgress
         private DataTable PrepareData(Task _task)
         {
             DataTable table = new DataTable();
-
-            //Add three columns to the DataTable
             table.Columns.Add("Date");
             table.Columns.Add("Y1");
             table.Columns.Add("Y2");
