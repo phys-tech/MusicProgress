@@ -7,7 +7,7 @@ namespace MusicProgress.Backend
 {
     public class ExtremumCreator
     {
-        public Extremum CreateExtremum(Task _task)
+        public Extremum Create(Task _task)
         {
             if (_task == Task.eSearchTone || _task == Task.eSearch37)
                 return new ExtremumClicks(_task);
@@ -28,10 +28,8 @@ namespace MusicProgress.Backend
         public Extremum(Task _task)
         {
             task = _task;
-            //bestChunk = DataChunk();
-            //worstChunk = DataChunk();
-            //successPercentBest = 0.0F;
-            //failedPercentWorst = 100.0F;
+            bestChunk = new UpDownData();
+            worstChunk = new UpDownData();
         }
 
         public virtual void AppendData(DataChunk data)
@@ -46,11 +44,12 @@ namespace MusicProgress.Backend
         {
             String result = "<b>" + TaskConverter.AsString(task) + "</b>";
             result += "<br>Best result:";
-            result += "Success: " + bestChunk.successful + " / " + bestChunk.totalTasks;
-            result += "Happened on " + bestChunk.date.ToLongDateString() + " with " + bestChunk.repeats + " repeats";
+            result += "<br>Success: " + bestChunk.successful + " / " + bestChunk.totalTasks;
+            result += "<br>Happened on " + bestChunk.date.ToLongDateString() + " with " + bestChunk.repeats + " repeats";
             result += "<br>Worst result:";
-            result += "Failed: " + worstChunk.failed + " / " + worstChunk.totalTasks;
-            result += "Happened on " + worstChunk.date.ToLongDateString() + " with " + worstChunk.repeats + " repeats";
+            result += "<br>Failed: " + worstChunk.failed + " / " + worstChunk.totalTasks;
+            result += "<br>Happened on " + worstChunk.date.ToLongDateString() + " with " + worstChunk.repeats + " repeats";
+            result += "<br>";
             return result;
         }
     }
@@ -62,6 +61,7 @@ namespace MusicProgress.Backend
         {
             bestChunk = new DefineToneData();
             worstChunk = new DefineToneData();
+            ((DefineToneData)worstChunk).first = 1000;
         }
 
         public override void AppendData(DataChunk chunk)
@@ -77,11 +77,12 @@ namespace MusicProgress.Backend
         {
             String result = "<b>" + TaskConverter.AsString(task) + "</b>";
             result += "<br>Best result:";
-            result += "Success: " + ((DefineToneData)bestChunk).first + " / " + bestChunk.totalTasks;
-            result += "Happened on " + bestChunk.date.ToLongDateString() + " with " + bestChunk.repeats + " repeats";
+            result += "<br>Success: " + ((DefineToneData)bestChunk).first + " / " + bestChunk.totalTasks;
+            result += "<br>Happened on " + bestChunk.date.ToLongDateString() + " with " + bestChunk.repeats + " repeats";
             result += "<br>Worst result:";
-            result += "Failed: " + ((DefineToneData)worstChunk).first + " / " + worstChunk.totalTasks;
-            result += "Happened on " + worstChunk.date.ToLongDateString() + " with " + worstChunk.repeats + " repeats";
+            result += "<br>Failed: " + ((DefineToneData)worstChunk).first + " / " + worstChunk.totalTasks;
+            result += "<br>Happened on " + worstChunk.date.ToLongDateString() + " with " + worstChunk.repeats + " repeats";
+            result += "<br>";
             return result;
         }
     }
@@ -93,6 +94,7 @@ namespace MusicProgress.Backend
         {
             bestChunk = new SearchToneData();
             worstChunk = new SearchToneData();
+            ((SearchToneData)bestChunk).clicks = 1000;
         }
 
         public override void AppendData(DataChunk chunk)
@@ -109,11 +111,12 @@ namespace MusicProgress.Backend
         {
             String result = "<b>" + TaskConverter.AsString(task) + "</b>";
             result += "<br>Best result:";
-            result += "Success: " + ((SearchToneData)bestChunk).clicks + " / " + bestChunk.totalTasks;
-            result += "Happened on " + bestChunk.date.ToLongDateString() + " with " + bestChunk.repeats + " repeats";
+            result += "<br>Success: " + ((SearchToneData)bestChunk).clicks + " / " + bestChunk.totalTasks;
+            result += "<br>Happened on " + bestChunk.date.ToLongDateString() + " with " + bestChunk.repeats + " repeats";
             result += "<br>Worst result:";
-            result += "Failed: " + ((SearchToneData)worstChunk).clicks + " / " + worstChunk.totalTasks;
-            result += "Happened on " + worstChunk.date.ToLongDateString() + " with " + worstChunk.repeats + " repeats";
+            result += "<br>Failed: " + ((SearchToneData)worstChunk).clicks + " / " + worstChunk.totalTasks;
+            result += "<br>Happened on " + worstChunk.date.ToLongDateString() + " with " + worstChunk.repeats + " repeats";
+            result += "<br>";
             return result;
         }
     }

@@ -4,14 +4,22 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using MusicProgress.Backend;
 
 namespace MusicProgress
 {
-    public partial class WebForm1 : System.Web.UI.Page
+    public partial class ExtremePage : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Aggregator aggregator = new Aggregator();
 
+            foreach (Task task in Enum.GetValues(typeof(Task)))
+            {
+                Label lab = new Label();
+                lab.Text = aggregator.mapExtremum[task].ShowAsString();
+                pExtremeLabels.Controls.AddAt((int)task, lab);
+            }
         }
     }
 }
