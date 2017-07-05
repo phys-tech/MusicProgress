@@ -3,7 +3,6 @@
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
 
 <!DOCTYPE html>
-  <head>
 
 <style>
     .container {
@@ -23,7 +22,7 @@
     }
 </style>
 
-</head>
+
     <div class="container">
         <div>
                 <asp:Calendar ID="cdStartDate" runat="server" BackColor="White" BorderColor="#999999" Caption="Дата начала" CellPadding="4" DayNameFormat="Shortest" FirstDayOfWeek="Monday" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" Height="180px" OnSelectionChanged="cdStartDate_SelectionChanged" ToolTip="Выберите дату начала графиков" Width="200px">

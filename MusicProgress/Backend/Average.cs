@@ -21,13 +21,13 @@ namespace MusicProgress.Backend
 
     public class Average
     {
-        public int total;
-        public int success;
-        public int failed;
-        public int repeats;
-        public TimeSpan duration;
-        public int count;
-
+        protected int total;
+        protected int success;
+        protected int failed;
+        protected int repeats;
+        protected TimeSpan duration;
+        protected int count;
+               
         private Task task;
         private float averageTotal;
         private float averageSuccess;
@@ -82,9 +82,9 @@ namespace MusicProgress.Backend
 
     public class AverageAttempts : Average
     {
-        public int first;
-        public int second;
-        public int third;
+        protected int first;
+        protected int second;
+        protected int third;
 
         private float averageFirst;
         private float averageSecond;
@@ -126,7 +126,7 @@ namespace MusicProgress.Backend
 
     public class AverageClicks : AverageAttempts
     {
-        public int clicks;
+        protected int clicks;
 
         private float averageClicks;
 
