@@ -26,6 +26,7 @@
             <li><a runat="server" href="~/">Home</a></li>
             <li><a runat="server" href="DataPage.aspx">Data</a></li>
             <li><a runat="server" href="AveragePage.aspx">Average</a></li>
+            <li><a runat="server" href="ExtremePage.aspx">Extreme</a></li>
             <li><a runat="server" href="ChartPage.aspx">Chart</a></li>
         </ul>
     </aside>

@@ -199,6 +199,7 @@
     <Content Include="Images\orderedList9.png" />
     <Content Include="packages.config" />
     <Content Include="ChartPage.aspx" />
+    <Content Include="ExtremePage.aspx" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
@@ -320,6 +321,13 @@
     </Compile>
     <Compile Include="ChartPage.aspx.designer.cs">
       <DependentUpon>ChartPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ExtremePage.aspx.cs">
+      <DependentUpon>ExtremePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ExtremePage.aspx.designer.cs">
+      <DependentUpon>ExtremePage.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -23,7 +23,6 @@ namespace MusicProgress.Backend
 
         private void CalcStats(ListOfChunks data)
         {
-            // C++ style             
             foreach (DataChunk chunk in data)
             {
                 Task task = chunk.task;
