@@ -10,10 +10,12 @@ namespace MusicProgress.Backend
         private static readonly MySingleton instance = new MySingleton();
 
         public DataCollector collector;
+        public Aggregator aggregator;
 
         private MySingleton()
         {
             collector = new DataCollector();
+            aggregator = new Aggregator(collector.data);
         }
 
         public static MySingleton GetMe()

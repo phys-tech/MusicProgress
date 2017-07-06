@@ -6,16 +6,13 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using MusicProgress.Backend;
 
-using System.Data;
-using System.Web.UI.DataVisualization.Charting;
-
 namespace MusicProgress
 {
     public partial class AveragePage : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Aggregator aggregator = new Aggregator();
+            Aggregator aggregator = MySingleton.GetMe().aggregator;
 
             foreach (Task task in Enum.GetValues(typeof(Task)))
             {
@@ -24,6 +21,5 @@ namespace MusicProgress
                 Panel1.Controls.AddAt((int)task, lab);
             }
         }
-
     }
 }

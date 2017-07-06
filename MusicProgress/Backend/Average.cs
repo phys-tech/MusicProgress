@@ -9,10 +9,10 @@ namespace MusicProgress.Backend
     {
         public Average Create(Task _task)
         {
-            if (_task == Task.eDefineTone || _task == Task.eSequence2 || _task == Task.eDefine37 || _task == Task.eSequence2N37T)
-                return new AverageAttempts(_task);
-            else if (_task == Task.eSearchTone || _task == Task.eSearch37)
+            if (_task == Task.eSearchTone || _task == Task.eSearch37)
                 return new AverageClicks(_task);
+            else if (_task == Task.eDefineTone || _task == Task.eSequence2 || _task == Task.eDefine37 || _task == Task.eSequence2N37T)
+                return new AverageAttempts(_task);
             else
                 return new Average(_task);
         }
@@ -45,7 +45,7 @@ namespace MusicProgress.Backend
             duration = new TimeSpan(0);
         }
 
-        public virtual void CollectData(DataChunk chunk)
+        public virtual void AppendData(DataChunk chunk)
         {
             total += chunk.totalTasks;
             success += chunk.successful;
@@ -97,9 +97,9 @@ namespace MusicProgress.Backend
             third = 0;
         }
 
-        public override void CollectData(DataChunk chunk)
+        public override void AppendData(DataChunk chunk)
         {
-            base.CollectData(chunk);
+            base.AppendData(chunk);
             first += ((DefineToneData)chunk).first;
             second += ((DefineToneData)chunk).second;
             third += ((DefineToneData)chunk).third;
@@ -135,9 +135,9 @@ namespace MusicProgress.Backend
             clicks = 0;
         }
 
-        public override void CollectData(DataChunk chunk)
+        public override void AppendData(DataChunk chunk)
         {
-            base.CollectData(chunk);
+            base.AppendData(chunk);
             clicks += ((SearchToneData) chunk).clicks;
         }
 

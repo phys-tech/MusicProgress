@@ -12,21 +12,21 @@ namespace MusicProgress.Backend
         public Dictionary<Task, Average> mapAverage;
         public Dictionary<Task, Extremum> mapExtremum;
 
-        public Aggregator()
+        public Aggregator(ListOfChunks allData)
         {
             mapAverage = new Dictionary<Task, Average>();
-            AverageCreator creator = new AverageCreator();
+            AverageCreator avCreator = new AverageCreator();
 
             mapExtremum = new Dictionary<Task, Extremum>();
             ExtremumCreator extCreator = new ExtremumCreator();
 
             foreach (Task task in Enum.GetValues(typeof(Task)))
             {
-                mapAverage.Add(task, creator.Create(task));
+                mapAverage.Add(task, avCreator.Create(task));
                 mapExtremum.Add(task, extCreator.Create(task));
             }
 
-            CalcStats(MySingleton.GetMe().collector.data);
+            CalcStats(allData);
         }
 
         private void CalcStats(ListOfChunks data)
@@ -34,7 +34,7 @@ namespace MusicProgress.Backend
             foreach (DataChunk chunk in data)
             {
                 Task task = chunk.task;
-                mapAverage[task].CollectData(chunk);
+                mapAverage[task].AppendData(chunk);
                 mapExtremum[task].AppendData(chunk);
             }
 

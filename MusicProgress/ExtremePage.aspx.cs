@@ -12,7 +12,7 @@ namespace MusicProgress
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Aggregator aggregator = new Aggregator();
+            Aggregator aggregator = MySingleton.GetMe().aggregator;
 
             foreach (Task task in Enum.GetValues(typeof(Task)))
             {
