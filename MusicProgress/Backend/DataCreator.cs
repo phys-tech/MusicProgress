@@ -67,18 +67,6 @@ namespace MusicProgress.Backend
     //*****************************************************************
     //! Second level of inheritance in Factory method
 
-    public class Search37Creator : SearchToneCreator
-    {
-        public override DataChunk FactoryMethod()
-        {
-            return new Search37Tone();
-        }
-        public override DataChunk FactoryMethod_2(DateTime _date)
-        {
-            return new Search37Tone(_date);
-        }    
-    }
-
     public class Sequence2NotesCreator : DefineToneCreator
     {
         public override DataChunk FactoryMethod()
@@ -89,6 +77,30 @@ namespace MusicProgress.Backend
         {
             return new Sequence2Notes(_date);
         }
+    }
+
+    public class Sequence4NotesCreator : DefineToneCreator
+    {
+        public override DataChunk FactoryMethod()
+        {
+            return new Sequence4Notes();
+        }
+        public override DataChunk FactoryMethod_2(DateTime _date)
+        {
+            return new Sequence4Notes(_date);
+        }
+    }
+
+    public class Search37Creator : SearchToneCreator
+    {
+        public override DataChunk FactoryMethod()
+        {
+            return new Search37Tone();
+        }
+        public override DataChunk FactoryMethod_2(DateTime _date)
+        {
+            return new Search37Tone(_date);
+        }    
     }
 
     public class Define37NotesCreator : DefineToneCreator

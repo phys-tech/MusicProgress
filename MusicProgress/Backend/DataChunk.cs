@@ -246,6 +246,25 @@ namespace MusicProgress.Backend
         }
     }
 
+    public class Sequence2Notes : DefineToneData
+    {
+        public Sequence2Notes() : base() { }
+        public Sequence2Notes(DateTime _date)
+            : base(_date)
+        {
+            task = Task.eSequence2;
+        }
+    }
+
+    public class Sequence4Notes : DefineToneData
+    {
+        public Sequence4Notes() : base() { }
+        public Sequence4Notes(DateTime _date)
+            : base(_date)
+        {
+            task = Task.eSequence4;
+        }
+    }
 
     public class Search37Tone : SearchToneData
     {
@@ -253,15 +272,6 @@ namespace MusicProgress.Backend
         public Search37Tone(DateTime _date) : base(_date)
         {
             task = Task.eSearch37;
-        }
-    }
-
-    public class Sequence2Notes : DefineToneData
-    {
-        public Sequence2Notes() : base() { }
-        public Sequence2Notes(DateTime _date) : base (_date)
-        {
-            task = Task.eSequence2;
         }
     }
 
