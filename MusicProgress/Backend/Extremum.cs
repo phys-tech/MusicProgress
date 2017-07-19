@@ -61,21 +61,19 @@ namespace MusicProgress.Backend
         {
             bestChunk = new DefineToneData();
             worstChunk = new DefineToneData();
-            ((DefineToneData)worstChunk).first = 1000;
+            ((DefineToneData)worstChunk).first = 1000;      // big number to allow the seek mechanism
+            bestChunk.totalTasks = 1;                       // to prevent divide by zero
+            worstChunk.totalTasks = 1;
         }
 
         public override void AppendData(DataChunk chunk)
         {
-            if ((task == Task.eDefineTone || task == Task.eDefine37) && chunk.totalTasks != 50)       // just a temp duct-tape
-                return;
-            if ((task == Task.eSequence2 || task == Task.eSequence2N37T) && chunk.totalTasks != 20)
-                return;
-
             DefineToneData localChunk = (DefineToneData) chunk;
+            double attemptRatio = (double) localChunk.first / localChunk.totalTasks;
 
-            if (localChunk.first > ((DefineToneData)bestChunk).first)
+            if (attemptRatio > (double)((DefineToneData)bestChunk).first / bestChunk.totalTasks)
                 bestChunk = localChunk;
-            if (localChunk.first < ((DefineToneData)worstChunk).first)
+            if (attemptRatio < (double)((DefineToneData)worstChunk).first / worstChunk.totalTasks)
                 worstChunk = localChunk;
         }
         public override String ShowAsString()
@@ -99,18 +97,19 @@ namespace MusicProgress.Backend
         {
             bestChunk = new SearchToneData();
             worstChunk = new SearchToneData();
-            ((SearchToneData)bestChunk).clicks = 1000;
+            ((SearchToneData)bestChunk).clicks = 1000;      // big number to allow the seek mechanism
+            bestChunk.totalTasks = 1;                       // to prevent divide by zero
+            worstChunk.totalTasks = 1;
         }
 
         public override void AppendData(DataChunk chunk)
         {
-            if (chunk.totalTasks != 50)     // just a duct-tape for some time
-                return;
             SearchToneData localChunk = (SearchToneData) chunk;
+            double clicksRatio = (double) localChunk.clicks / localChunk.totalTasks;
 
-            if (localChunk.clicks < ((SearchToneData)bestChunk).clicks)
+            if (clicksRatio < (double)((SearchToneData)bestChunk).clicks / bestChunk.totalTasks)
                 bestChunk = localChunk;
-            if (localChunk.clicks > ((SearchToneData)worstChunk).clicks)
+            if (clicksRatio > (double)((SearchToneData)worstChunk).clicks / worstChunk.totalTasks)
                 worstChunk = localChunk;
         }
 
