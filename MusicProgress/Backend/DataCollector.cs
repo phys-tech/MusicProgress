@@ -11,7 +11,7 @@ namespace MusicProgress.Backend
     public class DataCollector
     {
         private const string pathToFiles = "C:\\MyStuff\\Temp\\MusicResults\\";
-        private string alterPath = ".\\App_Data\\";
+        private string alterPath = "..\\repository\\MusicProgress\\App_Data\\";
         private const string extension = "*.txt";
 
         public string allfiles;
