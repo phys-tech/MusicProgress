@@ -17,7 +17,8 @@ namespace MusicProgress
             lTotalFilesNum.Text = "HttpContext.Current.Request.Path = " + HttpContext.Current.Request.Path;
             lTotalFilesNum.Text += "\nHttpContext.Current.Request.ApplicationPath = " + HttpContext.Current.Request.ApplicationPath;
             lTotalFilesNum.Text += "\nHttpContext.Current.Request.Url.AbsolutePath = " + HttpContext.Current.Request.Url.AbsolutePath;
-
+            lTotalFilesNum.Text += "MapPath: " + Server.MapPath("\\App_Data\\");
+            
             System.Console.WriteLine("********************************************************");
             System.Console.WriteLine(HttpContext.Current.Request.Path);
             System.Console.WriteLine(HttpContext.Current.Request.ApplicationPath);
