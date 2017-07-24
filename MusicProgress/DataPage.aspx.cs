@@ -14,6 +14,7 @@ namespace MusicProgress
         {
             var localData = MySingleton.GetMe().collector.data;
 
+            lTotalFilesNum.Text = "Total files received: " + MySingleton.GetMe().collector.filesCounter.ToString();
             localData.Sort(CompareDataChunks);
             lRawData.Text = "";
             lTotalChunks.Text = "Всего собрано:  " + localData.Count.ToString() + " пачек";

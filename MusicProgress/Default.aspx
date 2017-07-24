@@ -17,10 +17,9 @@
     </section>
 </asp:Content>
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-    <h2>We suggest the following:</h2>
+    <h2>Let&#39;s debug together:</h2>
     <h3>
-    Total files number:
-        <asp:Label ID="lTotalFilesNum" runat="server"></asp:Label>    
+    &nbsp;<asp:Label ID="lTotalFilesNum" runat="server"></asp:Label>    
     </h3>
     <asp:Label ID="lFilenames" runat="server"></asp:Label>
     
