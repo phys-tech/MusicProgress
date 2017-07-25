@@ -1,7 +1,22 @@
-﻿<%@ Page Title="Average!" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AveragePage.aspx.cs" Inherits="MusicProgress.AveragePage" %>
+﻿<%@ Page Title="Average" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AveragePage.aspx.cs" Inherits="MusicProgress.AveragePage" %>
 
 <%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
     Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
+
+<asp:Content runat="server" ID="FeaturedContent" ContentPlaceHolderID="FeaturedContent">
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1><%: Title %>.</h1>
+                <h2>Average results across all the trainings.</h2>
+            </hgroup>
+            <p>
+                Some fucking stupid stuff.
+            </p>
+        </div>
+    </section>
+</asp:Content>
+
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <hgroup class="title">
         <h1><%: Title %></h1>        
@@ -18,10 +33,7 @@
     </asp:Table>
 
     <aside>
-        <h3>Aside Title</h3>
-        <p>        
-            Use this area to provide additional information.
-        </p>
+        <h3>Quick links</h3>
         <ul>
             <li><a runat="server" href="~/">Home</a></li>
             <li><a runat="server" href="DataPage.aspx">Data</a></li>

@@ -1,5 +1,20 @@
 ﻿<%@ Page Title="Charts" Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="ChartPage.aspx.cs" Inherits="MusicProgress.ChartPage" %>
 
+<asp:Content runat="server" ID="FeaturedContent" ContentPlaceHolderID="FeaturedContent">
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1><%: Title %>.</h1>
+                <h2>Illustrative way to see yor progress using charts.</h2>
+            </hgroup>
+            <p>
+                Some fucking stupid stuff.
+            </p>
+        </div>
+    </section>
+</asp:Content>
+
+
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
 
 <!DOCTYPE html>
