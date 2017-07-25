@@ -22,11 +22,18 @@ namespace MusicProgress
         {
             //lFilenames.Text = dataCollector.allfiles;
 
-            lTotalFilesNum.Text = "HttpContext.Current.Request.Path = " + HttpContext.Current.Request.Path + Environment.NewLine;
-            lTotalFilesNum.Text += "HttpContext.Current.Request.ApplicationPath = " + HttpContext.Current.Request.ApplicationPath + Environment.NewLine;
-            lTotalFilesNum.Text += "HttpContext.Current.Request.Url.AbsolutePath = " + HttpContext.Current.Request.Url.AbsolutePath + Environment.NewLine;
-            lTotalFilesNum.Text += "MapPath: " + Server.MapPath("\\App_Data\\") + Environment.NewLine;
-            lTotalFilesNum.Text += "Environmnet.CurrentDirectory: " + Environment.CurrentDirectory;
+            //lTotalFilesNum.Text = "HttpContext.Current.Request.Path = " + HttpContext.Current.Request.Path + Environment.NewLine;
+            //lTotalFilesNum.Text += "HttpContext.Current.Request.ApplicationPath = " + HttpContext.Current.Request.ApplicationPath + Environment.NewLine;
+            //lTotalFilesNum.Text += "HttpContext.Current.Request.Url.AbsolutePath = " + HttpContext.Current.Request.Url.AbsolutePath + Environment.NewLine;
+            //lTotalFilesNum.Text += "MapPath: " + Server.MapPath("\\App_Data\\") + Environment.NewLine;
+            //lTotalFilesNum.Text += "Environmnet.CurrentDirectory: " + Environment.CurrentDirectory;
+            GlobalPath.GlobalShit = Server.MapPath("~");
+            lTotalFilesNum.Text = "Global path1: " + GlobalPath.GlobalShit + "\n" + Environment.NewLine;
+            string folder = Server.MapPath("~/App_Data/uploads");
+            if (!Directory.Exists(folder))
+                Directory.CreateDirectory(folder);
+            GlobalPath.GlobalShit = folder;
+            lTotalFilesNum.Text += "Global path2: " + GlobalPath.GlobalShit;
         }
 
         protected void bUpload_Click(object sender, EventArgs e)
@@ -38,12 +45,7 @@ namespace MusicProgress
                 // extract only the filename
                 string fileName = Path.GetFileName(file.FileName);
                 // store the file inside ~/App_Data/uploads folder
-                string folder = Server.MapPath("~/App_Data/uploads");
-                if (!Directory.Exists(folder))
-                    Directory.CreateDirectory(folder);
-                GlobalPath.GlobalShit = folder;
-
-                string path = Path.Combine(folder, fileName);
+                string path = Path.Combine(GlobalPath.GlobalShit, fileName);
                 file.SaveAs(path);
 
                 lFilenames.Text = "Stored succesfully at " + (MyFileUpload.PostedFile.FileName);
