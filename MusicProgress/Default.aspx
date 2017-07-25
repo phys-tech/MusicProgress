@@ -18,6 +18,7 @@
     <h3>
     &nbsp;<asp:Label ID="lTotalFilesNum" runat="server"></asp:Label>    
     </h3>
+    <asp:FileUpload ID="MyFileUpload" runat="server" CssClass="featured" />
+    <asp:Button ID="bUpload" runat="server" OnClick="bUpload_Click" Text="Upload" /><br>
     <asp:Label ID="lFilenames" runat="server"></asp:Label>
-    
     </asp:Content>

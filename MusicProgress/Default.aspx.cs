@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -19,12 +20,22 @@ namespace MusicProgress
             lTotalFilesNum.Text += "HttpContext.Current.Request.Url.AbsolutePath = " + HttpContext.Current.Request.Url.AbsolutePath + Environment.NewLine;
             lTotalFilesNum.Text += "MapPath: " + Server.MapPath("\\App_Data\\") + Environment.NewLine;
             lTotalFilesNum.Text += "Environmnet.CurrentDirectory: " + Environment.CurrentDirectory;
+        }
 
-            System.Console.WriteLine("********************************************************");
-            System.Console.WriteLine(HttpContext.Current.Request.Path);
-            System.Console.WriteLine(HttpContext.Current.Request.ApplicationPath);
-            System.Console.WriteLine(HttpContext.Current.Request.Url.AbsolutePath);
+        protected void bUpload_Click(object sender, EventArgs e)
+        {            
+            // Verify that the user selected a file
+            var file = MyFileUpload.PostedFile;
+            if (file != null && file.ContentLength > 0)
+            {
+                // extract only the filename
+                var fileName = Path.GetFileName(file.FileName);
+                // store the file inside ~/App_Data/uploads folder
+                var path = Path.Combine(Server.MapPath("~/App_Data"), fileName);
+                file.SaveAs(path);
 
+                lFilenames.Text = "Stored succesfully at " + (MyFileUpload.PostedFile.FileName);
+            }
         }
     }
 }

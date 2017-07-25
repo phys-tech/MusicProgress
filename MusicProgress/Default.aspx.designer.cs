@@ -22,6 +22,24 @@ namespace MusicProgress {
         protected global::System.Web.UI.WebControls.Label lTotalFilesNum;
         
         /// <summary>
+        /// MyFileUpload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload MyFileUpload;
+        
+        /// <summary>
+        /// bUpload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button bUpload;
+        
+        /// <summary>
         /// lFilenames control.
         /// </summary>
         /// <remarks>
