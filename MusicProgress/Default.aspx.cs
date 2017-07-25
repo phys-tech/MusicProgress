@@ -8,7 +8,14 @@ using System.Web.UI.WebControls;
 using MusicProgress.Backend;
 
 namespace MusicProgress
-{
+{ 
+
+    public static class GlobalPath
+    {
+        public static string GlobalShit;
+    }
+
+    
     public partial class _Default : Page
     {
         protected void Page_Load(object sender, EventArgs e)
@@ -34,6 +41,7 @@ namespace MusicProgress
                 string folder = Server.MapPath("~/App_Data/uploads");
                 if (!Directory.Exists(folder))
                     Directory.CreateDirectory(folder);
+                GlobalPath.GlobalShit = folder;
 
                 string path = Path.Combine(folder, fileName);
                 file.SaveAs(path);
