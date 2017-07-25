@@ -25,13 +25,17 @@ namespace MusicProgress
         protected void bUpload_Click(object sender, EventArgs e)
         {            
             // Verify that the user selected a file
-            var file = MyFileUpload.PostedFile;
+            HttpPostedFile file = MyFileUpload.PostedFile;
             if (file != null && file.ContentLength > 0)
             {
                 // extract only the filename
-                var fileName = Path.GetFileName(file.FileName);
+                string fileName = Path.GetFileName(file.FileName);
                 // store the file inside ~/App_Data/uploads folder
-                var path = Path.Combine(Server.MapPath("~/App_Data"), fileName);
+                string folder = Server.MapPath("~/App_Data/uploads");
+                if (!Directory.Exists(folder))
+                    Directory.CreateDirectory(folder);
+
+                string path = Path.Combine(folder, fileName);
                 file.SaveAs(path);
 
                 lFilenames.Text = "Stored succesfully at " + (MyFileUpload.PostedFile.FileName);
