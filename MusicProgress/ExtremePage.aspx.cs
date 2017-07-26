@@ -16,9 +16,9 @@ namespace MusicProgress
 
             foreach (Task task in Enum.GetValues(typeof(Task)))
             {
-                Label lab = new Label();
-                lab.Text = aggregator.mapExtremum[task].ShowAsString();
-                pExtremeLabels.Controls.AddAt((int)task, lab);
+                Label newLabel = new Label();
+                newLabel.Text = aggregator.mapExtremum[task].ShowAsString();
+                pExtremeLabels.Controls.AddAt((int)task, newLabel);
             }
         }
     }

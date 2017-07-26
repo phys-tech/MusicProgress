@@ -5,7 +5,10 @@
         <div class="content-wrapper">
             <hgroup class="title">
                 <h1><%: Title %>.</h1>
-                <h2><asp:Label ID="lTotalFilesNum" runat="server"></asp:Label></h2>
+                <h2>Сырые данные о результатах занятий.</h2>
+                <h3><asp:Label ID="lTotalFilesNum" runat="server"></asp:Label></h3>
+                <h3><asp:Label ID="lTotalChunks" runat="server"></asp:Label></h3>
+
             </hgroup>
         </div>
     </section>
@@ -13,14 +16,11 @@
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <hgroup class="title">
-        <h1><%: Title %>.</h1>
-        <h2>Full loaded with raw data.</h2>
+        <h1><%: Title %>.</h1>        
     </hgroup>
 
     <section class="contact">
         <header>
-            <h3>&nbsp;<asp:Label ID="lTotalChunks" runat="server"></asp:Label>
-            </h3>
             <p>
                 <asp:Label ID="lRawData" runat="server"></asp:Label>
             </p>

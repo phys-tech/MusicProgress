@@ -13,13 +13,13 @@ namespace MusicProgress {
     public partial class _Default {
         
         /// <summary>
-        /// lTotalFilesNum control.
+        /// lDebugInfo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lTotalFilesNum;
+        protected global::System.Web.UI.WebControls.Label lDebugInfo;
         
         /// <summary>
         /// MyFileUpload control.
@@ -40,12 +40,12 @@ namespace MusicProgress {
         protected global::System.Web.UI.WebControls.Button bUpload;
         
         /// <summary>
-        /// lFilenames control.
+        /// lStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lFilenames;
+        protected global::System.Web.UI.WebControls.Label lStatus;
     }
 }
