@@ -11,7 +11,6 @@ namespace MusicProgress.Backend
     public class DataCollector
     {
         private const string pathToFiles = "F:\\MyStuff\\Temp\\MusicResults\\";
-        private string alterPath = "/App_Data/uploads";
         private const string extension = "*.txt";
 
         public string allfiles;
@@ -43,7 +42,7 @@ namespace MusicProgress.Backend
             filesCounter = 0;
             data = new ListOfChunks();
 
-            alterPath = GlobalPath.GlobalShit;
+            string alterPath = GlobalPath.GlobalShit;
 
             string path = (Directory.Exists(pathToFiles)) ? (pathToFiles) : (alterPath);
             IEnumerable<string> filelist = Directory.EnumerateFiles(path, extension, SearchOption.TopDirectoryOnly);

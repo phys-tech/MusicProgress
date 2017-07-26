@@ -24,5 +24,11 @@ namespace MusicProgress.Backend
             //    instance = new MySingleton();
             return instance;
         }
+
+        public void ReloadData()
+        {
+            collector = new DataCollector();
+            aggregator = new Aggregator(collector.data);        
+        }
     }
 }
