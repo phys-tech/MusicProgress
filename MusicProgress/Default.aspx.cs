@@ -30,27 +30,31 @@ namespace MusicProgress
         }
 
         protected void bUpload_Click(object sender, EventArgs e)
-        {            
-            HttpPostedFile file = MyFileUpload.PostedFile;
-            if (file == null || file.ContentLength == 0)
-                lStatus.Text = "Файл пуст";
+        {
+            int counter = 0;
+            foreach (HttpPostedFile file in MyFileUpload.PostedFiles)
+            {
+                if (file == null || file.ContentLength == 0)
+                    lStatus.Text = "Файл пуст";
 
-            else if (Path.GetExtension(file.FileName) != "txt")
-                lStatus.Text = "Файл должен быть с расширением .txt";
+                else if (Path.GetExtension(file.FileName) != ".txt")
+                    lStatus.Text = "Файл должен быть с расширением .txt";
 
-            else if (file.ContentLength > 1024 * 1024 * 4)
-                lStatus.Text = "Файл больше 4 МБ";
-          
-            else    //if (file != null && file.ContentLength > 0)
-            {                
-                // extract only the filename
-                string fileName = Path.GetFileName(file.FileName);
-                // store the file inside ~/App_Data/uploads folder
-                string path = Path.Combine(GlobalPath.GlobalShit, fileName);
-                file.SaveAs(path);
+                else if (file.ContentLength > 1024 * 1024 * 4)
+                    lStatus.Text = "Файл больше 4 МБ";
 
-                lStatus.Text = "Успешно загружен файл: " + (MyFileUpload.PostedFile.FileName);
+                else
+                {
+                    // extract only the filename
+                    string fileName = Path.GetFileName(file.FileName);
+                    // store the file inside ~/App_Data/uploads folder
+                    string path = Path.Combine(GlobalPath.GlobalShit, fileName);
+                    file.SaveAs(path);
+                    counter++;
+                    lStatus.Text = "Успешно загружен файл: " + (MyFileUpload.PostedFile.FileName);
+                }
             }
+            lStatus.Text = "Успешно загружено файлов: " + counter.ToString() + ", последний: " + (MyFileUpload.PostedFile.FileName);
         }
     }
 }

@@ -15,7 +15,7 @@
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <h2>Загружайте файлы с данными о результатах занятий:</h2>
     <h3><asp:Label ID="lDebugInfo" runat="server"></asp:Label></h3>
-    <asp:FileUpload ID="MyFileUpload" runat="server" CssClass="featured" />
+    <asp:FileUpload ID="MyFileUpload" runat="server" CssClass="featured" AllowMultiple="True" />
     <asp:Button ID="bUpload" runat="server" OnClick="bUpload_Click" Text="Upload" /><br>
     <asp:Label ID="lStatus" runat="server"></asp:Label>
 </asp:Content>
