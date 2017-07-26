@@ -12,12 +12,12 @@
     </section>
 </asp:Content>
 
-<asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
+<asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
     <hgroup class="title">
         <h1><%: Title %></h1>        
     </hgroup>
 
-    <asp:Panel ID="pAverageData" runat="server" Height="1028px">
+    <asp:Panel ID="pAverageData" runat="server">
     </asp:Panel>
 
     <aside>

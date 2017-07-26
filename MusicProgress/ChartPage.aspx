@@ -63,7 +63,7 @@
 
     </div> 
     <div >
-        <asp:Panel ID="pCharts" runat="server" Height="1222px" HorizontalAlign="Justify" ValidateRequestMode="Enabled" ViewStateMode="Disabled" Width="1300px">
+        <asp:Panel ID="pCharts" runat="server" HorizontalAlign="Justify" ValidateRequestMode="Enabled" ViewStateMode="Disabled" Width="1300px">
         </asp:Panel>
 
     </div>
