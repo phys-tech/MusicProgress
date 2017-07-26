@@ -14,10 +14,11 @@ namespace MusicProgress
         {
             var localData = MySingleton.GetMe().collector.data;
 
-            lTotalFilesNum.Text = "Total files received: " + MySingleton.GetMe().collector.filesCounter.ToString();
-            localData.Sort(CompareDataChunks);
-            lRawData.Text = "";
+            lTotalFilesNum.Text = "Всего файлов прочитано: " + MySingleton.GetMe().collector.filesCounter.ToString();
             lTotalChunks.Text = "Всего собрано:  " + localData.Count.ToString() + " пачек";
+            lRawData.Text = "";
+
+            localData.Sort(CompareDataChunks);
             foreach (DataChunk chunk in localData)
             {
                 string text = chunk.ShowData();

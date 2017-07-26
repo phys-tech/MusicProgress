@@ -7,11 +7,8 @@
         <div class="content-wrapper">
             <hgroup class="title">
                 <h1><%: Title %>.</h1>
-                <h2>Best and worst results of all time.</h2>
+                <h2>Лучший и худший результат по каждому занятию.</h2>
             </hgroup>
-            <p>
-                Some fucking stupid stuff.
-            </p>
         </div>
     </section>
 </asp:Content>

@@ -43,9 +43,6 @@ namespace MusicProgress.Backend
             filesCounter = 0;
             data = new ListOfChunks();
 
-            //HttpServerUtility
-            //string folder = Server.MapPath("~/App_Data/uploads");
-            //alterPath = HttpContext.Current.Request.ApplicationPath + alterPath;
             alterPath = GlobalPath.GlobalShit;
 
             string path = (Directory.Exists(pathToFiles)) ? (pathToFiles) : (alterPath);

@@ -5,11 +5,8 @@
         <div class="content-wrapper">
             <hgroup class="title">
                 <h1><%: Title %>.</h1>
-                <h2>Illustrative way to see yor progress using charts.</h2>
+                <h2>Наглядный способ увидеть прогресс с помощью графиков.</h2>
             </hgroup>
-            <p>
-                Some fucking stupid stuff.
-            </p>
         </div>
     </section>
 </asp:Content>
@@ -66,7 +63,7 @@
 
     </div> 
     <div >
-        <asp:Panel ID="pCharts" runat="server" Height="1222px" HorizontalAlign="Justify" ValidateRequestMode="Enabled" ViewStateMode="Disabled" Width="1300px">
+        <asp:Panel ID="pCharts" runat="server" HorizontalAlign="Justify" ValidateRequestMode="Enabled" ViewStateMode="Disabled" Width="1300px">
         </asp:Panel>
 
     </div>
