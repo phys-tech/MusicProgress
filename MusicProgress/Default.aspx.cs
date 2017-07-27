@@ -55,7 +55,8 @@ namespace MusicProgress
                 }
             }
             lStatus.Text = "Успешно загружено файлов: " + counter.ToString() + ", последний: " + (MyFileUpload.PostedFile.FileName);
-            MySingleton.GetMe().ReloadData();
+            if (counter > 0)
+                MySingleton.GetMe().ReloadData();
         }
     }
 }
