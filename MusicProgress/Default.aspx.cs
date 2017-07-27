@@ -12,7 +12,12 @@ namespace MusicProgress
 
     public static class GlobalPath
     {
-        public static string GlobalShit;
+        private static string stuff;
+        public static string GlobalShit
+        {
+            get { return stuff;}
+            set { stuff = value; System.Console.WriteLine("Global shit changed to:" + stuff); }
+        }
     }
 
     
