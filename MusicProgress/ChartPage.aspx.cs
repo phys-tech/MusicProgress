@@ -25,8 +25,8 @@ namespace MusicProgress
         {
             data = MySingleton.GetMe().collector.data;
             System.Web.UI.DataVisualization.Charting.ChartHttpHandler.Settings.StorageType = ChartHttpHandlerStorageType.InProcess;
-            //System.Web.UI.DataVisualization.Charting.ChartHttpHandler.Settings.FolderName
-            //System.Web.UI.DataVisualization.Charting.ChartHttpHandler.Settings.Directory
+            System.Web.UI.DataVisualization.Charting.ChartHttpHandler.Settings.FolderName = "~\\App_Data\\";
+            System.Web.UI.DataVisualization.Charting.ChartHttpHandler.Settings.Directory = "~\\App_Data\\uploads";
 
             pCharts.Controls.Clear();
             foreach (Task task in Enum.GetValues(typeof(Task)))
