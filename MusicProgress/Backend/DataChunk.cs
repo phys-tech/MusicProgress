@@ -82,7 +82,7 @@ namespace MusicProgress.Backend
 
         public override string ShowData()
         {
-            string sDate = date.ToLongDateString();
+            string sDate = date.ToString("dd MMMM yyyy");
             string sType = TaskConverter.AsString(task);
             string sTotal = totalTasks.ToString();
             string sSuccess = successful.ToString();
@@ -132,7 +132,7 @@ namespace MusicProgress.Backend
 
         public override string ShowData()
         {
-            string sDate = date.ToLongDateString();
+            string sDate = date.ToString("dd MMMM yyyy");
             string sType = TaskConverter.AsString(task);
             string sTotal = totalTasks.ToString();
             string sSuccess = successful.ToString();
@@ -194,7 +194,7 @@ namespace MusicProgress.Backend
 
         public override string ShowData()
         {
-            string sDate = date.ToLongDateString();
+            string sDate = date.ToString("dd MMMM yyyy");
             string sType = TaskConverter.AsString(task);
             string sTotal = totalTasks.ToString();
             string sSuccess = successful.ToString();
@@ -239,7 +239,7 @@ namespace MusicProgress.Backend
 
         public override string ShowData()
         {
-            string sDate = date.ToLongDateString();
+            string sDate = date.ToString("dd MMMM yyyy");
             string sTask = TaskConverter.AsString(task);
             string output = "<b>" + sDate + " - " + sTask +  "</b><br>";
             return output;

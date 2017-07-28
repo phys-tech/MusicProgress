@@ -73,9 +73,11 @@ namespace MusicProgress.Backend
                 return;
 
             DateTime localdate = DateTime.Now;
+            var culture = System.Globalization.CultureInfo.InvariantCulture;
+            string dateString = board[0].Substring(28);
             try
             {
-                localdate = DateTime.Parse(board[0].Substring(28));
+                localdate = DateTime.ParseExact(dateString, "dd.MM.yyyy, HH:mm:ss", culture);
             }
             catch (Exception e)
             {
