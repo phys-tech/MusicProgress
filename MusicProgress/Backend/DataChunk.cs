@@ -38,8 +38,8 @@ namespace MusicProgress.Backend
         public abstract string ShowData();
 
         public virtual void PrepareDataForChart(ref DataRow row)
-        {            
-            row["Date"] = date.ToShortDateString();
+        {
+            row["Date"] = date.ToString("dd.MM.yyyy");
             row["Repeats"] = repeats;
             row["Failed"] = failed;
             row["Duration"] = duration;
