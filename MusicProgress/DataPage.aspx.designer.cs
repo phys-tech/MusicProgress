@@ -31,12 +31,12 @@ namespace MusicProgress {
         protected global::System.Web.UI.WebControls.Label lTotalChunks;
         
         /// <summary>
-        /// lRawData control.
+        /// pRawData control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lRawData;
+        protected global::System.Web.UI.WebControls.Panel pRawData;
     }
 }

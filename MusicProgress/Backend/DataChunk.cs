@@ -84,12 +84,12 @@ namespace MusicProgress.Backend
         {
             string sDate = date.ToString("dd MMMM yyyy");
             string sType = TaskConverter.AsString(task);
-            string sTotal = totalTasks.ToString();
+            string sTotal = totalTasks.ToString() + " заданий";
             string sSuccess = successful.ToString();
             string sFail = failed.ToString();
-            string sRepeats = repeats.ToString();
+            string sRepeats = repeats.ToString() + " повторов";
             string sTime = duration.ToString();
-            string output = sDate + " - " + sType + " - " + sTotal + " (  " + sSuccess + " / " + sFail + " ) " + "[" + sRepeats + "] " + "\t\t t = " + sTime + "<br>";
+            string output = sDate + " - " + sType + ": " + sTotal + " (  " + sSuccess + " / " + sFail + " ) " + "[" + sRepeats + "] " + "\t\t продолжительность " + sTime + "<br>";
             return output;
         }
 
@@ -134,16 +134,16 @@ namespace MusicProgress.Backend
         {
             string sDate = date.ToString("dd MMMM yyyy");
             string sType = TaskConverter.AsString(task);
-            string sTotal = totalTasks.ToString();
+            string sTotal = totalTasks.ToString() + " заданий";
             string sSuccess = successful.ToString();
             string sFail = failed.ToString();
             string sFirst = first.ToString();
             string sSecond = second.ToString();
             string sThird = third.ToString();
-            string sRepeats = repeats.ToString();
+            string sRepeats = repeats.ToString() + " повторов";
             string sTime = duration.ToString();
-            string attempts = " <u>|" + sFirst + "|" + sSecond + "|" + sThird + "</u> ";
-            string output = sDate + " - " + sType + " - " + sTotal + " (  " + sSuccess + " / " + sFail + " ) " + attempts + "[" + sRepeats + "] " + "\t\t t = " + sTime + "<br>";
+            string attempts = " <u>Попытки: " + sFirst + "|" + sSecond + "|" + sThird + "</u> ";
+            string output = sDate + " - " + sType + ": " + sTotal + " (  " + sSuccess + " / " + sFail + " ) " + "[" + sRepeats + "] " + attempts + "\t\t продолжительность " + sTime + "<br>";
             return output;
         }
 
@@ -196,17 +196,17 @@ namespace MusicProgress.Backend
         {
             string sDate = date.ToString("dd MMMM yyyy");
             string sType = TaskConverter.AsString(task);
-            string sTotal = totalTasks.ToString();
+            string sTotal = totalTasks.ToString() + " заданий";
             string sSuccess = successful.ToString();
             string sFirst = first.ToString();
             string sSecond = second.ToString();
             string sThird = third.ToString();
             string sFail = failed.ToString();
-            string sClicks = clicks.ToString();
-            string sRepeats = repeats.ToString();
+            string sClicks = clicks.ToString() + " кликов";
+            string sRepeats = repeats.ToString() + " повторов";
             string sTime = duration.ToString();
-            string attempts = " <u>|" + sFirst + "|" + sSecond + "|" + sThird + "</u> ";
-            string output = sDate + " - " + sType + " - " + sTotal + " (  " + sSuccess + " / " + sFail + " ) " + attempts + "* <b>"+ sClicks + "</b> [" + sRepeats + "] " + "\t\t t = " + sTime + "<br>";
+            string attempts = " <u>Попытки: " + sFirst + "|" + sSecond + "|" + sThird + "</u> ";
+            string output = sDate + " - " + sType + ": " + sTotal + " (  " + sSuccess + " / " + sFail + " ) [" + sRepeats + "] " + attempts + " <b>" + sClicks + "</b>" + "\t\t продолжительность " + sTime + "<br>";
             return output;
         }
 

@@ -22,7 +22,7 @@
     <section class="contact">
         <header>
             <p>
-                <asp:Label ID="lRawData" runat="server"></asp:Label>
+                <asp:Panel ID="pRawData" runat="server"></asp:Panel>
             </p>
         </header>
     </section>

@@ -16,13 +16,24 @@ namespace MusicProgress
 
             lTotalFilesNum.Text = "Всего файлов прочитано: " + MySingleton.GetMe().collector.filesCounter.ToString();
             lTotalChunks.Text = "Всего собрано:  " + localData.Count.ToString() + " пачек";
-            lRawData.Text = "";
 
             localData.Sort(CompareDataChunks);
+            DateTime prevDate = DateTime.MinValue;
             foreach (DataChunk chunk in localData)
             {
-                string text = chunk.ShowData();
-                lRawData.Text += text;
+                if (prevDate.Month != chunk.date.Month)
+                {
+                    Label monthLabel = new Label();
+                    monthLabel.Text = "<h2 text-align=center>" + chunk.date.ToString("MMMM yyyy") + "</h2><br><br>";
+                    monthLabel.BorderStyle = BorderStyle.Solid;
+                    //monthLabel.styCssClass = ".centered_label";
+                    pRawData.Controls.Add(monthLabel);
+                    prevDate = chunk.date;
+                }
+
+                Label newLabel = new Label();
+                newLabel.Text = chunk.ShowData();
+                pRawData.Controls.Add(newLabel);
             }
         }
 
