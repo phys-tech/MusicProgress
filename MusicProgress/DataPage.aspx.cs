@@ -12,6 +12,7 @@ namespace MusicProgress
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            GlobalPath.GlobalShit = Server.MapPath(GlobalPath.RelativePath);
             var localData = MySingleton.GetMe().collector.data;
 
             lTotalFilesNum.Text = "Всего файлов прочитано: " + MySingleton.GetMe().collector.filesCounter.ToString();

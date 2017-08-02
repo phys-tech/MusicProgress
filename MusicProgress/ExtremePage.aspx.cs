@@ -12,6 +12,7 @@ namespace MusicProgress
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            GlobalPath.GlobalShit = Server.MapPath(GlobalPath.RelativePath);
             Aggregator aggregator = MySingleton.GetMe().aggregator;
 
             foreach (Task task in Enum.GetValues(typeof(Task)))

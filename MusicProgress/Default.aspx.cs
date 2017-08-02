@@ -12,6 +12,7 @@ namespace MusicProgress
 
     public static class GlobalPath
     {
+        public const string RelativePath = "~/App_Data/uploads";
         private static string stuff;
         public static string GlobalShit
         {
@@ -27,7 +28,7 @@ namespace MusicProgress
         {
             GlobalPath.GlobalShit = Server.MapPath("~");
             lDebugInfo.Text = "Global path1: " + GlobalPath.GlobalShit + "\n" + Environment.NewLine;
-            string folder = Server.MapPath("~/App_Data/uploads");
+            string folder = Server.MapPath(GlobalPath.RelativePath);
             if (!Directory.Exists(folder))
                 Directory.CreateDirectory(folder);
             GlobalPath.GlobalShit = folder;

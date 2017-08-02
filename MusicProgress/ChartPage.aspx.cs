@@ -23,6 +23,7 @@ namespace MusicProgress
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            GlobalPath.GlobalShit = Server.MapPath(GlobalPath.RelativePath);
             data = MySingleton.GetMe().collector.data;
             System.Web.UI.DataVisualization.Charting.ChartHttpHandler.Settings.StorageType = ChartHttpHandlerStorageType.InProcess;
             System.Web.UI.DataVisualization.Charting.ChartHttpHandler.Settings.FolderName = "~\\App_Data\\";
