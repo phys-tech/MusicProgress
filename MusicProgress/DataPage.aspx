@@ -18,12 +18,16 @@
     <hgroup class="title">
         <h1><%: Title %>.</h1>        
     </hgroup>
+    <div runat="server">   <!--class="centered_label" -->
+        <section runat="server" id="test_stuff">     <!-- id="centered_label" -->            
+         </section>
+    </div>
+    <div id="divData" runat="server" >
+        <!-- all the data contents will be stored here -->
+    </div>
 
-    <section class="contact">
-        <header>
-            <p>
-                <asp:Panel ID="pRawData" runat="server"></asp:Panel>
-            </p>
-        </header>
-    </section>
+    <div runat="server">    <!-- class="contact" -->     
+                <asp:Panel ID="pRawData" runat="server"></asp:Panel>    
+    </div>
+
 </asp:Content>

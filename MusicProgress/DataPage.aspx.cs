@@ -25,16 +25,16 @@ namespace MusicProgress
                 if (prevDate.Month != chunk.date.Month)
                 {
                     Label monthLabel = new Label();
-                    monthLabel.Text = "<h2 text-align=center>" + chunk.date.ToString("MMMM yyyy") + "</h2><br><br>";
-                    monthLabel.BorderStyle = BorderStyle.Solid;
-                    //monthLabel.styCssClass = ".centered_label";
-                    pRawData.Controls.Add(monthLabel);
+                    monthLabel.CssClass = "centered-data";
+                    monthLabel.Text = " " + chunk.date.ToString("MMMM yyyy") + "<br>";
+                    divData.Controls.Add(monthLabel);                    
                     prevDate = chunk.date;
                 }
 
                 Label newLabel = new Label();
                 newLabel.Text = chunk.ShowData();
-                pRawData.Controls.Add(newLabel);
+                newLabel.CssClass = "normal-data";
+                divData.Controls.Add(newLabel);
             }
         }
 
