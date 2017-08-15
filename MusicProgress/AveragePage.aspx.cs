@@ -12,6 +12,7 @@ namespace MusicProgress
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            GlobalPath.GlobalShit = Server.MapPath(GlobalPath.RelativePath);
             int files = MySingleton.GetMe().collector.filesCounter;
             int chunks = MySingleton.GetMe().collector.data.Count;
             lAveragePacks.Text = "В среднем заданий в файле: " + ((float)chunks / files).ToString("F2");

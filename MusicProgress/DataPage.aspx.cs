@@ -12,17 +12,29 @@ namespace MusicProgress
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            GlobalPath.GlobalShit = Server.MapPath(GlobalPath.RelativePath);
             var localData = MySingleton.GetMe().collector.data;
 
             lTotalFilesNum.Text = "Всего файлов прочитано: " + MySingleton.GetMe().collector.filesCounter.ToString();
             lTotalChunks.Text = "Всего собрано:  " + localData.Count.ToString() + " пачек";
-            lRawData.Text = "";
 
             localData.Sort(CompareDataChunks);
+            DateTime prevDate = DateTime.MinValue;
             foreach (DataChunk chunk in localData)
             {
-                string text = chunk.ShowData();
-                lRawData.Text += text;
+                if (prevDate.Month != chunk.date.Month)
+                {
+                    Label monthLabel = new Label();
+                    monthLabel.CssClass = "centered-data";
+                    monthLabel.Text = " " + chunk.date.ToString("MMMM yyyy") + "<br>";
+                    divData.Controls.Add(monthLabel);                    
+                    prevDate = chunk.date;
+                }
+
+                Label newLabel = new Label();
+                newLabel.Text = chunk.ShowData();
+                newLabel.CssClass = "normal-data";
+                divData.Controls.Add(newLabel);
             }
         }
 

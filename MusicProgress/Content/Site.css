@@ -177,7 +177,7 @@ footer {
 
 /* menu
 ----------------------------------------------------------*/
-ul#menu {
+ul#my_menu {
     font-size: 1.3em;
     font-weight: 600;
     margin: 0 0 5px;
@@ -185,23 +185,42 @@ ul#menu {
     text-align: right;
 }
 
-    ul#menu li {
+    ul#my_menu li {
         display: inline;
         list-style: none;
         padding-left: 15px;
     }
 
-        ul#menu li a {
+        ul#my_menu li a {
             background: none;
             color: #999;
             text-decoration: none;
         }
 
-        ul#menu li a:hover {
+        ul#my_menu li a:hover {
             color: #333;
             text-decoration: none;
         }
 
+/* contents
+----------------------------------------------------------*/
+/* my data labels */
+
+.centered-data
+{
+    text-align:center;
+    font-size:2em;
+    color:blue;
+    font-style:italic;
+    border-style:solid;
+    display:block;
+}
+
+.normal-data
+{
+    text-align:left;
+    display:block;
+}
 
 /* page elements
 ----------------------------------------------------------*/

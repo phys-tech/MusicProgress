@@ -22,13 +22,18 @@ namespace MusicProgress
         private bool useEnd = false;
 
         protected void Page_Load(object sender, EventArgs e)
-        {            
+        {
+            GlobalPath.GlobalShit = Server.MapPath(GlobalPath.RelativePath);
             data = MySingleton.GetMe().collector.data;
+            System.Web.UI.DataVisualization.Charting.ChartHttpHandler.Settings.StorageType = ChartHttpHandlerStorageType.InProcess;
+            System.Web.UI.DataVisualization.Charting.ChartHttpHandler.Settings.FolderName = "~\\App_Data\\";
+            System.Web.UI.DataVisualization.Charting.ChartHttpHandler.Settings.Directory = "~\\App_Data\\uploads";
 
             pCharts.Controls.Clear();
             foreach (Task task in Enum.GetValues(typeof(Task)))
             {
                 Chart chart1 = new Chart();
+                chart1.ImageStorageMode = ImageStorageMode.UseHttpHandler;
                 chart1.Height = 670;
                 chart1.Width = 960;
                 chart1.Series.Add("Series1");

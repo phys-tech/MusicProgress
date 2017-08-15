@@ -14,8 +14,9 @@ namespace MusicProgress.Backend
 
         private MySingleton()
         {
-            collector = new DataCollector();
-            aggregator = new Aggregator(collector.data);
+            //collector = new DataCollector();
+            //aggregator = new Aggregator(collector.data);
+            ReloadData();
         }
 
         public static MySingleton GetMe()
@@ -23,6 +24,12 @@ namespace MusicProgress.Backend
             //if (instance == null)
             //    instance = new MySingleton();
             return instance;
+        }
+
+        public void ReloadData()
+        {
+            collector = new DataCollector();
+            aggregator = new Aggregator(collector.data);        
         }
     }
 }

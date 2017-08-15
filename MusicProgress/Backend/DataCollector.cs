@@ -10,8 +10,7 @@ namespace MusicProgress.Backend
 
     public class DataCollector
     {
-        private const string pathToFiles = "F:\\MyStuff\\Temp\\MusicResults\\";
-        private string alterPath = "/App_Data/uploads";
+        private const string pathToFiles = "C:\\MyStuff\\Temp\\MusicResults\\";
         private const string extension = "*.txt";
 
         public string allfiles;
@@ -43,10 +42,20 @@ namespace MusicProgress.Backend
             filesCounter = 0;
             data = new ListOfChunks();
 
-            alterPath = GlobalPath.GlobalShit;
+            string alterPath = GlobalPath.GlobalShit;
+            System.Console.WriteLine("DataCollector: alterpath is " + alterPath);
+            System.Console.WriteLine("DataCollector: GlobalShit is " + GlobalPath.GlobalShit);
 
             string path = (Directory.Exists(pathToFiles)) ? (pathToFiles) : (alterPath);
-            IEnumerable<string> filelist = Directory.EnumerateFiles(path, extension, SearchOption.TopDirectoryOnly);
+            IEnumerable<string> filelist = new List<string>();
+            try
+            {
+                filelist = Directory.EnumerateFiles(path, extension, SearchOption.TopDirectoryOnly);
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine("DataCollector: Enumeratefiles bug." + e.Message.ToString());
+            }
             foreach (string file in filelist)
             {
                 allfiles += Path.GetFileName(file) + "<br>";
@@ -63,7 +72,17 @@ namespace MusicProgress.Backend
             if (!board[2].StartsWith("Тип задания:"))
                 return;
 
-            DateTime localdate = DateTime.Parse(board[0].Substring(28));
+            DateTime localdate = DateTime.Now;
+            var culture = System.Globalization.CultureInfo.InvariantCulture;
+            string dateString = board[0].Substring(28);
+            try
+            {
+                localdate = DateTime.ParseExact(dateString, "dd.MM.yyyy, HH:mm:ss", culture);
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine("DataCollector: Error in Date, line is " + board[0]+ "; file is "+ path);
+            }
 
             int lineNumber = 2;
             while (!board[lineNumber].StartsWith("Дата и время остановки журнала"))
