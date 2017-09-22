@@ -12,7 +12,7 @@ namespace MusicProgress
 
     public static class GlobalPath
     {
-        public const string RelativePath = "~/App_Data/uploads";
+        public const string RelativePath = "~/App_Data/uploads/test";
         private static string stuff;
         public static string GlobalShit
         {

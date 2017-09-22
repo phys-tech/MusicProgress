@@ -27,6 +27,7 @@ namespace MusicProgress.Backend
             }
 
             CalcStats(allData);
+            CalcDates();
         }
 
         private void CalcStats(ListOfChunks data)
@@ -40,6 +41,27 @@ namespace MusicProgress.Backend
 
             foreach (Average av in mapAverage.Values)
                 av.CalcAverage();
+        }
+
+        private void CalcDates()
+        {
+            DateTime bestNearest = DateTime.MinValue;
+            DateTime worstNearest = DateTime.MinValue;
+
+            foreach (Extremum ext in mapExtremum.Values)
+            {
+                if (ext.bestChunk.date > bestNearest)
+                    bestNearest = ext.bestChunk.date;
+                if (ext.worstChunk.date > worstNearest)
+                    worstNearest = ext.worstChunk.date;
+            }
+
+            foreach (Extremum ext in mapExtremum.Values)
+            {
+                ext.BestNearestDate = bestNearest;
+                ext.WorstNearestDate = worstNearest;
+            }
+            
         }
     }
 }

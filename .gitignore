@@ -196,3 +196,4 @@ FakesAssemblies/
 *.opt
 MusicProgress.v11.suo
 MusicProgress/App_Data/uploads/*_log.txt
+MusicProgress/App_Data/uploads/test/*_log.txt
