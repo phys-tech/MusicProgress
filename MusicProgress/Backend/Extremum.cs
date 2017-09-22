@@ -22,22 +22,26 @@ namespace MusicProgress.Backend
     public class Extremum
     {
         protected Task task;
-        protected DataChunk bestChunk;
-        protected DataChunk worstChunk;
+        protected DateTime bestNearestDate;
+        protected DateTime worstNearestDate;
+        public DataChunk bestChunk;
+        public DataChunk worstChunk;
 
         public Extremum(Task _task)
         {
             task = _task;
+            bestNearestDate = DateTime.MinValue;
+            worstNearestDate = DateTime.MinValue;
             bestChunk = new UpDownData();
             worstChunk = new UpDownData();
         }
 
-        public virtual void AppendData(DataChunk data)
+        public virtual void AppendData(DataChunk chunk)
         {
-            if (data.successful > bestChunk.successful)
-                bestChunk = data;
-            if (data.failed > worstChunk.failed)
-                worstChunk = data;
+            if (chunk.successful > bestChunk.successful)
+                bestChunk = chunk;
+            if (chunk.failed > worstChunk.failed)
+                worstChunk = chunk;
         }
 
         public virtual String ShowAsString()
@@ -45,12 +49,33 @@ namespace MusicProgress.Backend
             String result = "<b>" + TaskConverter.AsString(task) + "</b>";
             result += "<br>Best result:";
             result += "<br>Success: " + bestChunk.successful + " / " + bestChunk.totalTasks;
-            result += "<br>Happened on " + bestChunk.date.ToLongDateString() + " with " + bestChunk.repeats + " repeats and took " + bestChunk.duration.ToString();
+            result += "<br>Happened on " + MarkDate(bestChunk.date) + " with " + bestChunk.repeats + " repeats and took " + bestChunk.duration.ToString();
             result += "<br>Worst result:";
             result += "<br>Failed: " + worstChunk.failed + " / " + worstChunk.totalTasks;
-            result += "<br>Happened on " + worstChunk.date.ToLongDateString() + " with " + worstChunk.repeats + " repeats and took " + worstChunk.duration.ToString();
+            result += "<br>Happened on " + MarkDate(worstChunk.date) + " with " + worstChunk.repeats + " repeats and took " + worstChunk.duration.ToString();
             result += "<br>";
             return result;
+        }
+
+        protected string MarkDate(DateTime date)
+        {
+            if (date == bestNearestDate)
+                return "<i>" + bestNearestDate.ToLongDateString() + "</i>";
+            else if (date == worstNearestDate)
+                return "<i>" + worstNearestDate.ToLongDateString() + "</i>";
+            else
+                return date.ToLongDateString();
+        }
+
+        public DateTime BestNearestDate
+        {
+            get { return bestNearestDate; }
+            set { bestNearestDate = value; }
+        }
+        public DateTime WorstNearestDate
+        {
+            get { return worstNearestDate; }
+            set { worstNearestDate = value; }
         }
     }
 
@@ -81,10 +106,10 @@ namespace MusicProgress.Backend
             String result = "<b>" + TaskConverter.AsString(task) + "</b>";
             result += "<br>Best result:";
             result += "<br>First attempt: " + ((DefineToneData)bestChunk).first + " / " + bestChunk.totalTasks + " tasks";
-            result += "<br>Happened on " + bestChunk.date.ToLongDateString() + " with " + bestChunk.repeats + " repeats and took " + bestChunk.duration.ToString();
+            result += "<br>Happened on " + MarkDate(bestChunk.date) + " with " + bestChunk.repeats + " repeats and took " + bestChunk.duration.ToString();
             result += "<br>Worst result:";
             result += "<br>First attempt: " + ((DefineToneData)worstChunk).first + " / " + worstChunk.totalTasks + " tasks";
-            result += "<br>Happened on " + worstChunk.date.ToLongDateString() + " with " + worstChunk.repeats + " repeats  and took " + worstChunk.duration.ToString();
+            result += "<br>Happened on " + MarkDate(worstChunk.date) + " with " + worstChunk.repeats + " repeats  and took " + worstChunk.duration.ToString();
             result += "<br>";
             return result;
         }
@@ -118,10 +143,10 @@ namespace MusicProgress.Backend
             String result = "<b>" + TaskConverter.AsString(task) + "</b>";
             result += "<br>Best result:";
             result += "<br>Clicks: " + ((SearchToneData)bestChunk).clicks + " per " + bestChunk.totalTasks + " tasks";
-            result += "<br>Happened on " + bestChunk.date.ToLongDateString() + " with " + bestChunk.repeats + " repeats and took " + bestChunk.duration.ToString();
+            result += "<br>Happened on " + MarkDate(bestChunk.date) + " with " + bestChunk.repeats + " repeats and took " + bestChunk.duration.ToString();
             result += "<br>Worst result:";
             result += "<br>Clicks: " + ((SearchToneData)worstChunk).clicks + " per " + worstChunk.totalTasks + " tasks";
-            result += "<br>Happened on " + worstChunk.date.ToLongDateString() + " with " + worstChunk.repeats + " repeats and took " + worstChunk.duration.ToString();
+            result += "<br>Happened on " + MarkDate(worstChunk.date) + " with " + worstChunk.repeats + " repeats and took " + worstChunk.duration.ToString();
             result += "<br>";
             return result;
         }
