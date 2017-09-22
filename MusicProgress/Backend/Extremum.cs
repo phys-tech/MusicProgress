@@ -60,9 +60,9 @@ namespace MusicProgress.Backend
         protected string MarkDate(DateTime date)
         {
             if (date == bestNearestDate)
-                return "<i>" + bestNearestDate.ToLongDateString() + "</i>";
+                return "<FONT COLOR=#C33>" + bestNearestDate.ToLongDateString() + "</font>";
             else if (date == worstNearestDate)
-                return "<i>" + worstNearestDate.ToLongDateString() + "</i>";
+                return "<FONT COLOR=#C33>" + worstNearestDate.ToLongDateString() + "</font>";
             else
                 return date.ToLongDateString();
         }
