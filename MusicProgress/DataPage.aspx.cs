@@ -14,6 +14,7 @@ namespace MusicProgress
         {
             GlobalPath.GlobalShit = Server.MapPath(GlobalPath.RelativePath);
             var localData = MySingleton.GetMe().collector.data;
+            MonthManager monthData = MySingleton.GetMe().aggregator.monthManager;
 
             lTotalFilesNum.Text = "Всего файлов прочитано: " + MySingleton.GetMe().collector.filesCounter.ToString();
             lTotalChunks.Text = "Всего собрано:  " + localData.Count.ToString() + " пачек";
@@ -27,7 +28,11 @@ namespace MusicProgress
                     Label monthLabel = new Label();
                     monthLabel.CssClass = "centered-data";
                     monthLabel.Text = " " + chunk.date.ToString("MMMM yyyy") + "<br>";
-                    divData.Controls.Add(monthLabel);                    
+                    divData.Controls.Add(monthLabel);
+                    Label month = new Label();
+                    month.CssClass = "centered-small";
+                    month.Text = monthData.GetDataForMonth(chunk.date);
+                    divData.Controls.Add(month);
                     prevDate = chunk.date;
                 }
 

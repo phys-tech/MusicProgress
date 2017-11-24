@@ -216,6 +216,14 @@ ul#my_menu {
     display:block;
 }
 
+.centered-small
+{
+    text-align:center;
+    font-size:1.4em;
+    border-style:solid;
+    display:block;
+}
+
 .normal-data
 {
     text-align:left;

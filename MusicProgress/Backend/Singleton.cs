@@ -14,15 +14,11 @@ namespace MusicProgress.Backend
 
         private MySingleton()
         {
-            //collector = new DataCollector();
-            //aggregator = new Aggregator(collector.data);
             ReloadData();
         }
 
         public static MySingleton GetMe()
         {
-            //if (instance == null)
-            //    instance = new MySingleton();
             return instance;
         }
 

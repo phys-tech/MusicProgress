@@ -11,6 +11,7 @@ namespace MusicProgress.Backend
     {
         public Dictionary<Task, Average> mapAverage;
         public Dictionary<Task, Extremum> mapExtremum;
+        public MonthManager monthManager;
 
         public Aggregator(ListOfChunks allData)
         {
@@ -19,6 +20,8 @@ namespace MusicProgress.Backend
 
             mapExtremum = new Dictionary<Task, Extremum>();
             ExtremumCreator extCreator = new ExtremumCreator();
+
+            monthManager = new MonthManager();
 
             foreach (Task task in Enum.GetValues(typeof(Task)))
             {
@@ -37,8 +40,10 @@ namespace MusicProgress.Backend
                 Task task = chunk.task;
                 mapAverage[task].AppendData(chunk);
                 mapExtremum[task].AppendData(chunk);
+                monthManager.AppendData(chunk);
             }
 
+            monthManager.CalcAverage();
             foreach (Average av in mapAverage.Values)
                 av.CalcAverage();
         }
