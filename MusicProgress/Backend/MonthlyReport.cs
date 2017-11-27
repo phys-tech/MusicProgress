@@ -11,11 +11,11 @@ namespace MusicProgress.Backend
         protected int success;
         protected int failed;
         protected int count;
-               
-        private Task task;
+
         private float averageTotal;
         private float averageSuccess;
         private float averageFailed;
+        private float successPercent;
 
         public MonthlyReport()
         {
@@ -37,11 +37,13 @@ namespace MusicProgress.Backend
             averageTotal = (float) total / count;
             averageSuccess = (float) success / count;
             averageFailed = (float) failed / count;
+            successPercent = (float)success / total * 100;
         }
 
         public virtual String ShowAsString()
         {
             String result = "" + count.ToString() + " тренировок; ";
+            result += "Успех " + successPercent.ToString("F1") + "%";
             result += "<br> Всего занятий: " + total.ToString() + "&nbsp";
             result += "( " + success.ToString() + " /&nbsp";
             result += failed.ToString() + " )";
