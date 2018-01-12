@@ -11,7 +11,7 @@ namespace MusicProgress.Backend
         {
             if (_task == Task.eSearchTone || _task == Task.eSearch37)
                 return new ExtremumClicks(_task);
-            else if (_task == Task.eDefineTone || _task == Task.eSequence2 || _task == Task.eSequence4 || _task == Task.eDefine37 || _task == Task.eSequence2N37T)
+            else if (_task == Task.eDefineTone || _task == Task.eSequence2 || _task == Task.eSequence4 || _task == Task.eDefine37 || _task == Task.eSequence2N37T || _task == Task.eSequence4N37T)
                return new ExtremumAttempts(_task);
             else
                 return new Extremum(_task);

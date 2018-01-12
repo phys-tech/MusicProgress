@@ -127,5 +127,16 @@ namespace MusicProgress.Backend
         }
     }
 
+    public class Sequence4N37TCreator : DefineToneCreator
+    {
+        public override DataChunk FactoryMethod()
+        {
+            return new Sequence4N37Tones();
+        }
+        public override DataChunk FactoryMethod_2(DateTime _date)
+        {
+            return new Sequence4N37Tones(_date);
+        }
+    }
 
 }

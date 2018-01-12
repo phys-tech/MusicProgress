@@ -14,9 +14,10 @@ namespace MusicProgress.Backend
      * Тип задания: Мелодии в пределах 13 клавиш -> Определение последовательности из 4-х звуков
      * Тип задания: Мелодии в пределах 37 клавиш -> Определение прозвучавшего тона
      * Тип задания: Мелодии в пределах 37 клавиш -> Определение последовательности из 2-х звуков
+     * Тип задания: Мелодии в пределах 37 клавиш -> Определение последовательности из 4-х звуков
      */
 
-    public enum Task { eUpDown = 0, eSearchTone, eDefineTone, eSequence2, eSequence4, eSearch37, eDefine37, eSequence2N37T, eUnknown };
+    public enum Task { eUpDown = 0, eSearchTone, eDefineTone, eSequence2, eSequence4, eSearch37, eDefine37, eSequence2N37T, eSequence4N37T, eUnknown };
 
 public static class TaskConverter
 {
@@ -39,6 +40,7 @@ public static class TaskConverter
         taskShortName.Add(Task.eSearch37, "Поиск 37 тонов");
         taskShortName.Add(Task.eDefine37, "Определение ноты из 37 тонов");
         taskShortName.Add(Task.eSequence2N37T, "Последовательность 2 звуков 37 тонов");
+        taskShortName.Add(Task.eSequence4N37T, "Последовательность 4 звуков 37 тонов");
         taskShortName.Add(Task.eUnknown, "Unknown Shit");
 
 
@@ -51,6 +53,7 @@ public static class TaskConverter
         taskLongName.Add("Тип задания: Мелодии в пределах 37 клавиш -> Поиск прозвучавшего тона", Task.eSearch37);
         taskLongName.Add("Тип задания: Мелодии в пределах 37 клавиш -> Определение прозвучавшего тона", Task.eDefine37);
         taskLongName.Add("Тип задания: Мелодии в пределах 37 клавиш -> Определение последовательности из 2-х звуков", Task.eSequence2N37T);
+        taskLongName.Add("Тип задания: Мелодии в пределах 37 клавиш -> Определение последовательности из 4-х звуков", Task.eSequence4N37T);
     }
 
     public static string AsString(Task eValue)

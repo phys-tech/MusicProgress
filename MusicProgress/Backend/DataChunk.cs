@@ -293,4 +293,13 @@ namespace MusicProgress.Backend
         }
     }
 
+    public class Sequence4N37Tones : DefineToneData
+    {
+        public Sequence4N37Tones() : base() { }
+        public Sequence4N37Tones(DateTime _date) : base(_date)
+        {
+            task = Task.eSequence4N37T;
+        }
+    }
+
 }
